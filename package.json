@@ -1,0 +1,21 @@
+{
+  "name": "landlordsimple",
+  "version": "1.0.0",
+  "description": "A Pen created at CodePen.io. You can find this one at http://codepen.io/GeBuOr/pen/mJJmgx.",
+  "main": "index.js",
+  "dependencies": {
+    "firebase": "^2.3.2",
+    "firebase-tools": "^2.1.0"
+  },
+  "devDependencies": {
+    "firebase": "^2.3.2"
+  },
+  "scripts": {
+    "test": "firebase init"
+  },
+  "keywords": [
+    "landlordsimple"
+  ],
+  "author": "Dominic Tulli",
+  "license": "ISC"
+}

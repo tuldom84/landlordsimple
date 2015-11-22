@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+
+
+
+<html>
+
+
+    <head>
+        <meta charset="utf-8">    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="favicon.ico">
+
+
+        <title>Starter Template for Bootstrap</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+
+        <link href="css/styles.css" rel="stylesheet">
+        <script src="https://cdn.firebase.com/js/client/2.3.0/firebase.js"></script>
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#home" class="glyphicon glyphicon-home"> Home</a></li>
+                        <li><a data-toggle="tab" href="#menu1" class="glyphicon glyphicon-book"> About</a></li>
+                        <li><a data-toggle="tab" href="#menu2" class="glyphicon glyphicon-phone-alt"> Contact</a></li>
+                    </ul>
+
+
+                </div><!--/.nav-collapse -->
+                <div class="navbar navbar-right navbar">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <input id="searchbox" type="search" class="form-control-static has-success has-feedback">
+
+
+                            <btn class="form-control-static btn btn-default glyphicon glyphicon-search" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="container">
+
+            <!--start of main page body content-->
+            <div class="row">
+                <!--Static left column-->
+                <div class="col-sm-2">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2>Hello and Welcome</h2>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="well well-sm">Small Well
+                                <p>Some content.</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!--Dynamic middle column-->
+                <div class="col-sm-8">
+
+                    <div class="starter-template">
+                        <div class="tab-content">
+                            <div id="home" class="tab-pane fade in active">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h1 class="glyphicon glyphicon-home"> Home</h1>
+                                    </div>
+                                    <div id="leftpanel" class="panel-body">
+                                        <div id="leftwell" class="well well-lg">
+
+                                            <div  class="panel panel-default">
+                                                <form id="form1" >
+                                                    <tr>  
+                                                        <td>First name</td>
+                                                        <td>  <input id = "firstname" type="text" class="landlord" /></td>
+                                                    </tr></br>
+                                                    <tr>
+                                                        <td>Last Name</td>
+                                                        <td> <input id = "lastname" type="text" class="landlord" /></td>
+                                                    </tr></br>
+
+                                                    <tr>
+                                                        <td>DOB</td> 
+                                                        <td> <input type="datetime-local" id = "datebirth" type="text" class="landlord" /></td>
+
+                                                    </tr></br>
+                                                    <tr>
+                                                        <td>Rating</td>
+                                                        <td> <input id = "rating" type="range" class="landlord" min="1" max="10"/></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Company</td>
+                                                        <td><input id="company"  class="landlord" /></td>
+
+                                                    </tr></br>
+                                                    <tr>
+                                                        <td>Comments</td>
+                                                        <td> <input id = "comments" type="" class="landlord" /></td>
+
+                                                    </tr></br>
+
+                                                    <button id="subBtn" class="button" onclick="saveTbl()">Submit</button>
+                                                </form>
+                                            </div>
+
+
+
+                                            <div id="landlordtblHeading" class="panel  panel-info">
+                                                <div id="lltblMessage" class="panel"></div>
+                                                <!-- Default panel contents -->
+                                                <div class="panel-heading panel-title">Landlords</div>
+
+                                                <!-- Table -->
+                                                <!--                                                <table id="landlordstbl" class="table">
+                                                                                                    ...
+                                                                                                </table>-->
+
+                                                <br/>
+                                                <!--                                                <button id="addBtn" type="button"  > Add Landlord</button>-->
+
+                                                <div class="tab-pane">
+                                                    <div class="tab-content active">
+                                                        <input type="button" id="addBtn"   width="10" class="glyphicon-plus-sign btn-default" value="+">Add Landlord</input> </br>
+
+                                                        <table id="landlordstbl" title="Landlords" class="table-responsive">
+                                                            <thead>
+                                                            <th>firstname</th>
+                                                            <th>lastname</th>
+                                                            <th>datebirth</th>
+                                                            <th>company</th>
+                                                            <th>rating</th>
+                                                            <th>comments</th>
+                                                            </thead>
+                                                            <tbody>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="menu1" class="tab-pane fade">
+                                <h1 class="glyphicon glyphicon-book"> About</h1>
+                                <p>Some content in menu 1.</p>
+                            </div>
+                            <div id="menu2" class="tab-pane fade">
+                                <h1 class="glyphicon glyphicon-phone-alt"> Contact</h1>
+                                <p>Some content in menu 2.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <!--Static right column-->
+                <div class="col-sm-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2>Hello and Welcome</h2>
+                        </div>
+                        <div class="panel-body">
+                            <p>Some content.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+        </div><!-- /.container -->
+
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/javascript" src="js/ajax.googleapis.com_ajax_libs_jquery_2.1.3_jquery.min.js"></script> 		
+        <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/ajax-cache.googlecode.com_files_ajaxCache-0.2.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.dynatable.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs/dt-1.10.9/datatables.css"/>
+
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <!--    <script src="js/ie10-viewport-bug-workaround.js"></script>-->
+        <script>                            var clickcount = 0;
+                                                        var inModal = false;
+                                                        //var Firebase = require("firebase");
+                                                        var landlordObj = {firstname: "Bob", lastname: "Reynold", datebirth: "07/21/1985", company: "JLB Construction", rating: 7.2, comments: ["This guy sucks!", "yeah right, he is the best!", "I think he is over rated. I paid a lot of money!!$$"]};
+                                                        var lltwo = {firstname: "Ricky", lastname: "Hatton", datebirth: "07/21/1985", company: "JLB Construction", rating: 7.2, comments: ["This guy sucks!", "yeah right, he is the best!", "I think he is over rated. I paid a lot of money!!$$"]};
+                                                        var dynaTbl = {};
+                                                        var jsonTestObj = {landlords: [landlordObj, lltwo]};
+                                                        var llproto = {firstname: "", lastname: "", datebirth: "", company: "", rating: 0.0, comments: []};
+                                                        // var llproto = {firstname: "", lastname: "", datebirth: "", company: "", rating: 0.0, comments: []};
+                                                        var dynoTest = [{firstname: "Bob", lastname: "Reynold", datebirth: "07/21/1985", company: "JLB Construction", rating: 7.2, comments: ["This guy sucks!", "yeah right, he is the best!", "I think he is over rated. I paid a lot of money!!$$"]}, {firstname: "Ricky", lastname: "Hatton", datebirth: "07/21/1985", company: "JLB Construction", rating: 7.2, comments: ["This guy sucks!", "yeah right, he is the best!", "I think he is over rated. I paid a lot of money!!$$"]}];
+
+
+                                                        var rootRef = new Firebase('https://slumlordrateboard.firebaseio.com');
+                                                        var db = rootRef.child("slumlordrateboard");
+                                                        var landlords = db.child("landlords");
+                                                        var mydata = {};
+                                                        var dbJava = {};
+                                                        var landlordsJava = {};
+                                                        var rowindex = landlordsJava.length;
+                                                        var submittedRowIndex = 0;
+                                                        var countLoads = 0;
+                                                        var dbJava = {};
+                                                        var landlordsJava = {};
+                                                        var table = $("#landlordstbl");
+                                                        var currentState = {};
+                                                        var messages = landlords.child("messages");
+                                                        var lastRowPicked = messages.child("lastRow");
+                                                        var rowindex = {}
+                                                        var matched;
+                                                        var all;
+                                                        var currLastIndex;
+                                                         var allIndexes = [];
+                                                        db.on("value", function (snapshot) {
+                                                            console.log("On read db.on: " + snapshot.val());
+
+
+                                                            dbJava = snapshot.val();
+                                                        }, function (errorObject) {
+                                                            console.log("The read failed: " + errorObject.code);
+
+                                                        });
+
+
+
+                                                        landlords.on("value", function (snapshot) {
+                                                            landlordsJava = snapshot.val();
+
+                                                            console.log("on read landlords.on: " + landlordsJava);
+                                                            dynaTbl = $('#landlordstbl').dynatable({
+                                                                dataset: {records: landlordsJava
+
+                                                                }
+                                                            }).data('dynaTbl');
+
+
+                                                            //stateKeeper.needsAddedMessage =true;
+                                                        }, function (errorObject) {
+                                                            console.log("The read failed: " + errorObject.code);
+
+                                                        });
+
+                                                        //on table load sort table by last name
+                                                        $('#landlordstbl').bind('dynatable:init', function (e, dynatable) {
+                                                           // dynatable.clear();
+                                                       
+                                                          // dynatable.records.resetOriginal();
+                                                           //dynatable.records.updateFromJson();
+                                                            dynatable.sorts.clear();
+                                                            dynatable.sorts.add('lastname', 1); // 1=ASCENDING, -1=DESCENDING
+                                                            dynatable.process();
+
+//
+//
+
+                                                        });
+
+
+
+
+                                                        lastRowPicked.on("value", function (snapshot) {
+                                                            rowval = snapshot.val();
+                                                            llproto = snapshot.val();
+
+                                                            console.log("last row: " + JSON.stringify(rowval));
+
+                                                        }, function (errorObject) {
+                                                            console.log("The read failed for messages: " + errorObject.code);
+
+                                                        });
+
+
+                                                        messages.on("value", function (snapshot) {
+                                                            currentState = snapshot.val();
+
+                                                            console.log("CURRENT STATE OBJECT: " + JSON.stringify(currentState));
+
+                                                            if (currentState.needsAddedMessage === true) {
+                                                                stateKeeper(currentState);
+                                                            }
+                                                            if (currentState.needsDeletedMessage === true) {
+                                                                stateKeeper(currentState);
+                                                            }
+                                                        }, function (errorObject) {
+                                                            console.log("The read failed for messages: " + errorObject.code);
+
+                                                        });
+
+
+
+
+//                                                landlords.on("change", function (snapshot) {
+//                                                 landlordsJava = snapshot.val();
+//
+//                                                console.log("on read landlords.on: " + landlordsJava);
+//                                                dynaTbl = $('#landlordstbl').dynatable({
+//                                                    dataset: {records: landlordsJava
+//
+//                                                    }
+//                                                }).data('dynaTbl');
+//
+//                                            }, function (errorObject) {
+//                                                console.log("The read failed: " + errorObject.code);
+//
+//                                            });
+
+                                                        $(landlords).on("change", function () {
+
+                                                            console.log("Form 1 has changed");
+                                                            rowindex = (landlordsJava.length) + 1;
+                                                            // var llproto= new llproto();
+                                                            llproto.firstname = $("#firstname").text();
+                                                            llproto.lastname = $("#lastname").text();
+                                                            llproto.datebirth = $("#datebirth").text();
+                                                            ;
+                                                            llproto.rating = $("#rating").text();
+                                                            ;
+                                                            llproto.company = $("#company").text();
+                                                            ;
+                                                            var commentTxt = $("#comments").text();
+                                                            ;
+                                                            llproto.comments = commentTxt.split(",");
+
+                                                            landlordsJava = snapshot.val();
+
+                                                            console.log("on read landlords.on: " + landlordsJava);
+                                                            dynaTbl = $('#landlordstbl').dynatable({
+                                                                dataset: {records: landlordsJava
+
+                                                                }
+                                                            }).data('dynaTbl');
+
+                                                        }, function (errorObject) {
+                                                            console.log("The read failed: " + errorObject.code);
+
+                                                        });
+
+
+                                                        landlords.on("child_changed", function (snapshot) {
+                                                            landlordsJava = snapshot.val();
+
+                                                            console.log("on read landlords.on child changed: " + landlordsJava);
+                                                            dynaTbl = $('#landlordstbl').dynatable({
+                                                                dataset: {records: landlordsJava
+
+                                                                }
+                                                            }).data('dynaTbl');
+                                                            mydata = eval(landlordsJava);
+                                                        }, function (errorObject) {
+                                                            console.log("The read failed: " + errorObject.code);
+
+                                                        });
+
+
+
+
+
+
+
+
+//require($.dynatable.js);                          
+
+
+
+//var $records = $(dynoTest);
+//   var myRecords =  JSON.stringify($records.text());
+//$('#landlordstbl').dynatable({
+//  dataset: {
+//    records: myRecords
+//  }
+//});
+
+
+//$('#landlordstbl').dynatable({
+//  dataset:  {records:dynoTest
+//      
+//        }
+//});
+
+
+
+
+//    $("#landlordstbl tbody").on( 'blur', "tr", function () {
+//  var value = $(this).val();
+//  if (value === "") {
+//    dynaTbl.queries.remove("comments");
+//  } else {
+//    dynaTbl.queries.add("comments",value);
+//  }
+//  dynaTbl.process();
+//});
+
+
+                                                        var colSelected = {};
+                                                        $("#landlordstbl tbody").on('blur', "td", function () {
+                                                            colSelected = $(this);
+                                                            console.log("Column blurred " + $(colSelected).text());
+                                                        });
+                                                        var rowval = {};
+
+                                                       
+                                                        
+                                                        //update data object using table as edited saving to llproto
+                                                        $("#landlordstbl tbody").on('blur', "tr", function () {
+                                                             $("div .modal-backdrop").removeClass("fade in");
+                                                            $("div .modal-backdrop").addClass("fade out");
+                                                         //   console.log("clickcount=" + clickcount + "...inmodal = " + inModal);
+                                                           // if (clickcount > 0 ? true : false && inModal === false) {
+                                                                   if (inModal === false) {
+                                                                inModal = false;
+
+                                                                //   for (var x = 0; x < rowval.children.length; x++) {
+
+
+                                                                llproto.firstname = rowval.children[0].textContent;
+                                                                llproto.lastname = rowval.children[1].textContent;
+                                                                llproto.datebirth = rowval.children[2].textContent;
+                                                                llproto.rating = rowval.children[4].textContent;
+                                                                llproto.company = rowval.children[3].textContent;
+                                                                var commentTxt = rowval.children[5].textContent;
+                                                                llproto.comments = commentTxt.split(",");
+                                                                // }
+                                                                // var matched=
+                                                                llMatch();
+                                                                lastRowPicked.set(llproto);
+                                                                landlords.child(matched).set(llproto);
+
+                                                                //landlords.child(rowindex).set(llproto)
+
+                                                                //  landlords.child(rowindex).set(llproto);
+                                                                //  location.reload();
+                                                                //  $(landlords).dom.update();
+                                                                var changes = $(this);
+                                                                console.log("A CHANGE HAS OCCURED " + "Row : " + changes.text());
+                                                                currentState.needsAddedMessage = false;
+                                                                currentState.needsDeletedMessage = false;
+                                                                messages.set(currentState);
+                                                                //  messages.set(currentState);
+
+                                                                location.reload();
+
+
+
+                                                                //need to reload doc to show changes
+                                                                //  location.reload();
+
+//                                                var tblb = table;
+//                                                var arec = JSON.stringify(tblb[0].rows);
+//                                                console.log("RECORDS STRINGIFIED" + arec)
+//                                                 dynaTbl = $('#landlordstbl').dynatable({
+//                                                    table: {
+//                                                        defaultColumnIdStyle: 'trimDash'
+//                                                    },
+//                                                    dataset:{records: arec }
+//                                                    
+//                                                });
+                                                                //tblb.records.getFromTable();
+
+                                                                //       dynaTbl.dom.update();
+                                                            }
+                                                        });
+                                                        // var arrJSON=[eval(llproto)];
+                                                        // $("#landlordstbl").dynatable().updateFromJson(arrJSON);
+
+
+
+                                                        $("#landlordstbl tbody").on('click', "tr", function () {
+                                                            inModal = false;
+                                                          //  clickcount = clickcount++ < 3 ? clickcount++ : 0;
+                                                            if ($("#lltblMessage").hasClass("panel-success")) {
+                                                           
+                                                          $("#closeMess").triggerHandler("click");
+                                                                    $("#closeMess").hide();
+                                                                        $("#lltblMessage").hide();
+                                                                $("#lltblMessage").removeClass("panel-success");
+                                                                $("#lltblMessage").text("");
+                                                                
+                                                            }
+                                                            // $(".modal *").toggle();
+                                                            rowval = $(this)[0];
+
+                                                            rowindex = (rowval.rowIndex) - 1;
+                                                            //rowval=llMatch();
+                                                            var matchedIndex = rowval.rowIndex;
+                                                            //toggleRowbg();
+                                                            //setting the whole row color
+                                                            var rowData = $(this);
+                                                            rowData.css("background-color", "yellow");
+                                                            $(rowData.siblings("*")).css("background-color", "white");
+
+                                                            rowData.prop("contentEditable", "true");
+
+
+
+                                                            llproto.firstname = rowval.children[0].textContent;
+                                                            llproto.lastname = rowval.children[1].textContent;
+                                                            llproto.datebirth = rowval.children[2].textContent;
+                                                            llproto.rating = rowval.children[4].textContent;
+                                                            llproto.company = rowval.children[3].textContent;
+                                                            var commentTxt = rowval.children[5].textContent;
+                                                            llproto.comments = commentTxt.split(",");
+                                                            //var matched= 
+                                                            llMatch();
+                                                            lastRowPicked.set(llproto);
+
+                                                            currentState.needsDeletedMessage = false;
+                                                            messages.set(currentState);
+                                                            // $(".modal *").toggle();
+
+
+//     if(rowData.css("background-color")==="yellow"){
+//
+//     }
+//  $("#landlordstbl *:not(rowData)").css("background-color", "white");
+                                                            console.log("row selected: " + $(this).text());
+                                                            // toggleRowbg($("#landlordstbl *:not(rowData)"));
+                                                            // ... do something with `rowData`
+
+
+//                                                            var rows = $(this).rows;                                                           var table = $(this).DataTable().create(table);
+//
+//                                                            var rowData = $(table).rows.data();     
+                                                         //   console.log("The row you selected is" + rowData);
+                                                        }
+//                                                        , function (errorObject) {
+//                                                          console.log("The read failed: " + errorObject.code);
+//                                                        }
+                                                        );
+
+
+
+
+                                                        $("#landlordstbl tbody").on('dblclick', "tr", function () {
+                                                            clickcount = 0;
+                                                            inModal = true;
+                                                            if ($("#lltblMessage").hasClass("panel-success")) {
+
+                                                                $("#lltblMessage").removeClass("panel-success");
+                                                                $("#lltblMessage").text("");
+                                                            }
+                                                            // $(".modal *").toggle();
+                                                            rowval = $(this)[0];
+                                                            rowindex = (rowval.rowIndex) - 1;
+                                                            //toggleRowbg();
+                                                            //setting the whole row color
+                                                            var rowData = $(this);
+                                                            rowData.css("background-color", "yellow");
+                                                            $(rowData.siblings("*")).css("background-color", "white");
+
+                                                            rowData.prop("contentEditable", "true");
+
+
+
+                                                            llproto.firstname = rowval.children[0].textContent;
+                                                            llproto.lastname = rowval.children[1].textContent;
+                                                            llproto.datebirth = rowval.children[2].textContent;
+                                                            llproto.rating = rowval.children[4].textContent;
+                                                            llproto.company = rowval.children[3].textContent;
+                                                            var commentTxt = rowval.children[5].textContent;
+                                                            llproto.comments = commentTxt.split(",");
+                                                            //var matched= 
+                                                            llMatch();
+
+                                                            //  landlords.child(matched).set(llproto);
+                                                            // $(".modal *").toggle();
+                                                            getModal(rowData);
+
+//     if(rowData.css("background-color")==="yellow"){
+//
+//     }
+//  $("#landlordstbl *:not(rowData)").css("background-color", "white");
+                                                           // console.log("row selected: " + $(this).text());
+                                                            // toggleRowbg($("#landlordstbl *:not(rowData)"));
+                                                            // ... do something with `rowData`
+
+
+//                                                            var rows = $(this).rows;                                                           var table = $(this).DataTable().create(table);
+//
+//                                                            var rowData = $(table).rows.data();     
+                                                      //      console.log("The row you selected is" + rowData);
+                                                        }
+//                                                        , function (errorObject) {
+//                                                          console.log("The read failed: " + errorObject.code);
+//                                                        }
+                                                        );
+
+                                                        function getMessageId(snapshot) {
+                                                            return snapshot.key().replace(/[^a-z0-9\-\_]/gi, '');
+                                                        }
+
+
+
+                                                        function getLandlordbyIndex(rowIndex) {
+
+                                                            landlords.child(rowIndex).child("firstname").on("value", function (firstnameSnapshot) {
+                                                                var firstnameLandlord = firstnameSnapshot.val();
+
+                                                                var queryRef = ref.orderByChild("firstname").endAt(firstnameLandlord).limitToLast(2)
+                                                                queryRef.on("value", function (firstnameLandlord) {
+                                                                    if (firstnameLandlord.numChildren() === 2) {
+                                                                        // Data is ordered by increasing height, so we want the first entry
+                                                                        firstnameLandlord.forEach(function (landlords) {
+                                                                            console.log("firstname snapshot" + firstnameLandlord.key());
+
+                                                                            // Returning true means that we will only loop through the forEach() one time
+                                                                            return true;
+                                                                        });
+                                                                    } else {
+                                                                        console.log("The stegosaurus is the shortest dino");
+                                                                    }
+                                                                });
+                                                            });
+
+
+                                                        }
+
+                                                        function getLastIndex(){
+                                                                     var highestIndex=0;
+                                                        
+                                                            for(var a in landlordsJava){
+                                                                console.log("INDEX IN ALL INDEXES: " + a);
+//                                                                if(landlordsJava[a]>highestIndex){
+                                                                    
+                                                                     highestIndex=a.key;
+                                                                    
+                                                             //   }
+                                                  
+                                                        }
+                                                         currLastIndex= highestIndex++;
+                                                                       }
+
+                                                        function llMatch() {
+                                                            
+                                                            var myLandlords = {};
+                                                            //var ref = new Firebase(landlords);
+//landlords.child().equalTo(llproto)
+                                                            //  console.log("Got to beginning of llMatch function");
+
+
+                                                            all = new Firebase('https://slumlordrateboard.firebaseio.com/slumlordrateboard/landlords');
+                                                            all.orderByKey().on("value", function (snapshot) {
+                                                                myLandlords = snapshot;
+                                                               
+                                                                 landlordsJava=snapshot.val();
+                                                                 //   console.log("last index is " + currLastIndex);
+                                                                snapshot.forEach(function (data) {
+                                                                    
+                                                                  //  getAllIndexes(data.key);
+                                                                    console.log("The key " + data.key() + " and value of landlord is " + JSON.stringify(data.val()));
+                                                                    // if(myLandlords.child(x).equalTo(llproto)){
+                                                                    if (JSON.stringify($(data.val())) === JSON.stringify($(llproto))) {
+
+
+                                                                        matched = data.name();
+
+                                                                        console.log("The key or name is " + matched);
+                                                                       
+                                                                    }
+                                                                        getLastIndex();
+                                                                     //   currLastIndex = data.limitToLast(1).name();
+                                                                });
+                                                            });
+//    for(var x in landlordsJava){
+//if(myLandlords.child(x).equalTo(llproto)){
+//          // if(JSON.stringify($(landlordsJava[x])) === JSON.stringify($(llproto))){
+//              
+//              
+//            var fbName= myLandlords.child(x).name();
+//            console.log("We have matched to: " + JSON.stringify($(landlordsJava[x])));
+//         console.log("IndexOf result " +  matched);
+//                 console.log("fbName result " +  fbName);
+//
+//         matched=fbName;
+//         
+//       break;
+//
+//    }
+//    
+//    }
+                                                            return matched;
+                                                        }
+
+                                                        function checkFBobj(ref) {
+
+                                                            var readyNow = false;
+                                                            while (readyNow === false) {
+                                                                console.log("ref is: " + ref)
+
+                                                                // Get a reference to our posts
+                                                                ref = rootRef.child("slumlordrateboard/" + ref);
+
+
+                                                                // Get the data on a post that has changed
+                                                                ref.on("value", function (snapshot) {
+
+                                                                    if (ref === null) {
+
+                                                                        ref.addChild("'" + ref + "'");
+                                                                    }
+
+
+                                                                    ref = snapshot.val();
+                                                                    readyNow = true;
+
+                                                                });
+
+                                                            }
+                                                            return ref
+                                                        }
+
+                                                        function saveTbl() {
+
+                                                            console.log("Form 1 has changed");
+                                                        // var nextIndex = $(landlordsJava).size();
+                                                             var nextIndex =currLastIndex;
+
+                                                            // var llproto= new llproto();
+                                                            llproto.firstname = $("#firstname").val();
+                                                            llproto.lastname = $("#lastname").val();
+                                                            llproto.datebirth = $("#datebirth").val();
+                                                            ;
+                                                            llproto.rating = $("#rating").val();
+                                                            ;
+                                                            llproto.company = $("#company").val();
+                                                            ;
+                                                            var commentTxt = $("#comments").val();
+                                                            ;
+                                                            llproto.comments = commentTxt.split(",");
+
+                                                            landlords.child(nextIndex).set(llproto);
+                                                            lastRowPicked.set(llproto);
+                                                            // landlords.set(llIns);
+                                                            //   $(table).dom.update();
+
+                                                            currentState.needsAddedMessage = true;
+                                                            messages.set(currentState);
+                                                            lastRowPicked.set(llproto);
+
+                                                            handleMessage();
+                                                            showHideForm();
+
+
+
+                                                            //dynaTbl.dom.update();
+                                                        }
+
+                                                        function updateModal() {
+
+                                                            console.log("Form 1 has changed");
+                                                            rowindex = (landlordsJava.length);
+
+                                                            console.log("Getting by row index.get func: " + $("#landlordstbl").get(rowindex));
+                                                            // var llproto= new llproto();
+                                                            llproto.firstname = $(".modal #firstname").val();
+                                                            llproto.lastname = $(".modal #lastname").val();
+                                                            llproto.datebirth = $(".modal #datebirth").val();
+                                                            ;
+                                                            llproto.rating = $(".modal #rating").val();
+                                                            ;
+                                                            llproto.company = $(".modal #company").val();
+                                                            ;
+                                                            var commentTxt = $(".modal #comments").val();
+                                                            ;
+                                                            llproto.comments = commentTxt.split(",");
+
+                                                            llMatch();
+                                                            landlords.child(matched).set(llproto);
+                                                            // landlords.set(llIns);
+                                                            //   $(table).dom.update();
+
+                                                            currentState.needsAddedMessage = false;
+                                                            messages.set(currentState);
+                                                            lastRowPicked.set(llproto);
+
+                                                            // handleMessage();
+                                                            // showHideForm();
+                                                            location.reload();
+
+
+                                                            //dynaTbl.dom.update();
+                                                        }
+
+                                                        function saveData(mydata) {
+
+                                                            console.log("Inside saveData()");
+                                                            var llIns = mydata;
+                                                            var myObj = new Object();
+                                                            llIns = $JSON.parse(checkFBobj(".landlords"));
+                                                            landlords.set(llIns);
+                                                            //       $('#landlordstbl').each(function () {
+
+                                                            console.log($(this).attr("id"));
+                                                            //  myObj["'"+ $(this).attr("id")+"'"]= "'"+this.value+"'";
+                                                            //          myObj[$(this).attr("id")] = this.value;
+
+                                                            //llIns[llIns.length].$(this).prop("id").val=$(this).value;
+
+
+
+                                                            //       });
+                                                            console.log("myObj= " + myObj.toString());
+                                                            llIns[llIns.length] = myObj;
+                                                            //  landlords = rootRef.child("slumlordrateboard/landlords");
+                                                            landlords.push(llIns);
+
+                                                            $("#leftwell").append($(llIns).toString());
+                                                        }
+
+                                                        $('document').ready(function () {
+
+                                                            //table=  new $.fn.dataTable.Api( '#landlordstbl' );
+                                                            //       landlords.set(dynoTest);
+
+
+
+                                                            //var lastPull = ref.child("lastPull");
+
+
+
+
+                                                            // var Firebase = require("firebase");
+
+
+                                                            //var teamstr= "";
+
+
+                                                            //						var data =[];
+                                                            //						var playerArr ={};
+                                                            //						var cache = new $.ajaxCache('GET', true, 1800000);
+                                                            //						
+                                                            //   var teamArr={};
+                                                            //   var ajax_path="";
+                                                            //var nflRest = new Object();
+                                                            //$('#leftwell').append("object" );
+                                                            //nflRest.teams = new Array();
+                                                            //$('#leftwell').append("teams" );
+                                                            //nflRest.players = new Array();
+                                                            //var teamstr=[];
+                                                            //$('#leftwell').append("teamstr" );
+                                                            //var playerstr=new String();
+                                                            //$('#leftwell').append("playerstr" );
+                                                            ////nflRest(teams,players,teamstr,playerstr);
+                                                            //$('#leftwell').append("before func" );
+                                                            //   
+                                                            //   
+                                                            //$('#leftwell').append("top" );
+                                                            //
+                                                            //function start(teamstr){
+                                                            //
+                                                            //ajax_path="https://api.fantasydata.net/nfl/v2/JSON/Teams/2015REG?Subscription-Key=1e6812d7d7b24f14985380dfacc8b99b";
+                                                            //
+                                                            //$('#leftwell').append("getting to start");
+                                                            //
+                                                            //
+                                                            //$.ajax({
+                                                            //            url: ajax_path,
+                                                            //crossOrigin: "true",
+                                                            //            type: "GET",
+                                                            //            contentType: 'application/json; charset=utf-8',
+                                                            //			
+                                                            //		dataType:"jsonp",
+                                                            //            success: function(resultData) {
+                                                            //	    if(cache.on) cache.put(ajax_path, resultData); // record the new response
+                                                            //      // update website
+                                                            //	$('#leftwell').append("success: " +resultData[0].FullName);
+                                                            //                //here is your json.
+                                                            //                  // process it
+                                                            //				  //this.teamstr = ;
+                                                            //				 this.teamstr= resultData;
+                                                            //				 // ref.set(this.teamstr);
+                                                            //	 teamstr = resultData;
+                                                            //				  
+                                                            //		var teamsref = ref.child("teams");
+                                                            //teamsref.set(resultData);
+                                                            //lastPull=ref.child("lastPull");
+                                                            //lastPull.set(nowDate);
+                                                            //
+                                                            //				//  teamArr = $.JSON.parse(this.teamstr);
+                                                            //$('#leftwell').append("success: " +resultData[0].FullName);
+                                                            //$('#leftwell').append("key: " +resultData[0].Key);
+                                                            //
+                                                            //
+                                                            //
+                                                            //		
+
+
+
+                                                            //			var teamshtml ="";
+                                                            //		 
+                                                            //		//writeToFile(teamstr);
+                                                            //		 
+                                                            //$(teamstr).each(function(){
+                                                            //console.log(this.FullName);
+                                                            // teamshtml+= '  <li class="list-group-item">' + this.FullName + '</li>';
+                                                            //  
+                                                            //		$('#leftwell').append(this.FullName);
+                                                            //  });
+                                                            //  
+                                                            //  
+                                                            //		$('#leftwell').after(
+                                                            //		
+                                                            //		'<h2>Teams</h2>'+
+                                                            //' <ul class="list-group">'+
+                                                            //teamshtml+
+                                                            //  '</ul>');
+                                                            //		
+
+                                                            //		starttwo(resultData);
+                                                            //
+                                                            //		$('#leftwell').append(" your out");
+                                                            //
+                                                            //		//end of success
+                                                            //		            },
+                                                            //            error : function(jqXHR, textStatus, errorThrown) {
+                                                            //			
+                                                            //			$('#leftwell').append("fail: " + errorThrown);
+                                                            //            },
+                                                            //
+                                                            //            timeout: 120000,
+                                                            //// end of ajax call
+                                                            //        });
+                                                            //// end of start function		
+                                                            //}
+                                                            //var p=0;
+                                                            //var ready= false;
+                                                            //
+                                                            //function wait(ready,teamstr){
+                                                            //	if(ready==true){ 
+                                                            //	starttwo(teamstr);
+                                                            //	
+                                                            //	}
+                                                            //	
+                                                            //	while(ready==false){
+                                                            //
+                                                            //if(p=0){
+                                                            //ready=true;
+                                                            //starttwo(teamstr);
+                                                            //break;
+                                                            //
+                                                            //	
+                                                            //}else if(ready===true){
+                                                            //	starttwo(teamstr);
+                                                            //	break;
+                                                            //}else{
+                                                            //	ready= false;
+                                                            //	continue;
+                                                            //}
+                                                            //	
+                                                            //}
+                                                            //	}
+
+                                                            //	
+                                                            //function starttwo(teamstr){
+                                                            //
+                                                            //	$('#leftwell').append(" your in");
+                                                            //ready=true;
+                                                            //
+                                                            ////var x=0;	
+                                                            //
+                                                            //		for(p=p; p< teamstr.length && ready===true; ){
+                                                            //		ajax_path = "https://api.fantasydata.net/nfl/v2/JSON/Players/"+ teamstr[p].Key + "?Subscription-Key=1e6812d7d7b24f14985380dfacc8b99b";
+                                                            //	ready=false;
+                                                            //	
+                                                            //		$('#leftwell').append("in players "+ teamstr[p].Key);
+                                                            //
+                                                            //		jQuery.ajax({
+                                                            //            url:ajax_path,
+                                                            //crossOrigin: "true",
+                                                            //            type: "GET",
+                                                            //            contentType: 'application/json; charset=utf-8',
+                                                            //			
+                                                            //		dataType:"jsonp",
+                                                            //            success: function(resultData) {
+                                                            //			
+                                                            //				    if(cache.on) cache.put(ajax_path, resultData);
+                                                            //				$('#leftwell').append(" p is " + p);
+                                                            //			$('#leftwell').append("player success" + resultData[0].LastName);
+                                                            //			teamstr[p].Players= resultData;
+                                                            //			//teamstr[p].Players= ;
+                                                            //			playerstr = resultData;
+                                                            //			var teamsref= ref.child("teams/"+p+"/players");
+                                                            ////			var playersref= ref.child("players");
+                                                            ////playersref.set(resultData);
+                                                            //
+                                                            //teamsref.push(resultData);
+                                                            //                //here is your json.
+                                                            //                  // process it
+                                                            //			// playerstr[playerstr.length]= resultData[0]
+                                                            //			 //	$('#leftwell').append("player last appended" + playerstr[playerstr.length].LastName);
+                                                            //			 
+                                                            //			// teamstr[p].push($.JSON.parse(playerstr));
+                                                            //				//  playerArr.add(this.playerstr);
+                                                            //				//  teamArr.add(this.playerstr);
+                                                            //				 // 	$('#leftwell').append("Added " + teamstr[p]);
+                                                            //				  
+                                                            //				//	for(var y in playerArr){
+                                                            //					
+                                                            //				//$('#leftwell').append("vars in team "+ playerArr[y].FirstName + " " + playerArr[y].LastName);
+                                                            //				//	}
+                                                            //				//  playerArr.add(this.playerstr);
+                                                            //				//  t[key].add($.JSON.parse(this.playerstr));
+                                                            //$('#leftwell').append("success: " + playerstr[0]);
+                                                            //
+                                                            //ready= true;
+                                                            //p++;
+                                                            //wait(true,teamstr);	
+                                                            //            },
+                                                            //            error : function(jqXHR, textStatus, errorThrown) {
+                                                            //			
+                                                            //			$('#leftwell').append("fail: " + errorThrown, textStatus,jqXHR.error);
+                                                            //            },
+                                                            //
+                                                            //            timeout: 120000,
+                                                            //        });
+                                                            //		}
+                                                            //
+                                                            //
+
+
+
+                                                            //     var params = {
+                                                            //        format: "JSON",
+                                                            //   season: "2015REG"
+                                                            //   Ocp-Apim-Subscription-Key: "5458c57684cd449aad2ed1003bc5a4b0"
+
+                                                            //    };
+                                                            //      
+                                                            //        $.getJSON("https://api.fantasydata.net/nfl/v2/JSON/Teams/2015REG?Subscription-Key=5458c57684cd449aad2ed1003bc5a4b0",
+                                                            //  function(data) {
+                                                            //	//	items = $.parseJSON(data);
+                                                            //		$('#leftwell').append("success: " +data[0].FullName);
+                                                            //		var teamnames = $(data).each().FullName;
+                                                            //           alert("success");
+                                                            //        
+                                                            //        
+                                                            //        });
+                                                            //        
+                                                            // 
+
+
+                                                            //$('#leftwell').append("success");
+                                                            //      
+                                                            //        $.ajax(teamsuri,function(data){
+                                                            //		
+                                                            //		
+                                                            //	})
+                                                            //        .done(function(data) {
+                                                            //		$('#leftwell').append("success");
+                                                            //       alert("success");
+                                                            //        })
+                                                            //        .fail(function(data) {
+                                                            //		
+                                                            //		
+                                                            //		$('#leftwell').append("FAIL" + data.toString()));
+                                                            //		
+                                                            //		
+                                                            //           alert("error");
+                                                            //        });
+                                                            //
+                                                            //
+
+                                                            //$.getJSON(teamsuri).done(function(data) {
+                                                            //
+                                                            //console.log( "JSON Data: " + data );
+                                                            //
+                                                            //
+                                                            //var items = JSON.parse(data);
+                                                            //
+                                                            //$('#leftwell').append(items);
+
+
+                                                            //$.each( items, function( key, val ) {
+
+                                                            //items.push( "<li id='" + key + "'>" + val + "</li>" );
+
+                                                            //items = JSON.parse(data);
+
+
+                                                            //});
+
+                                                            //$( "<ul/>", {
+
+                                                            //"class": "my-new-list",
+
+                                                            //html: items.join( "" )
+
+                                                            //}).appendTo( "#leftwell" );
+
+                                                            //
+                                                            //
+                                                            //})
+                                                            //
+                                                            //.fail(function( jqxhr, statusText, error) {
+                                                            //var processj = [];
+                                                            //
+                                                            //for(var x in jqxhr){
+                                                            //
+                                                            //$('#leftwell').append(x + "x</br>");
+                                                            //
+                                                            //for(var y in jqxhr[x]){
+                                                            //$('#leftwell').append( y +"y</br>");
+                                                            //}
+                                                            //}
+                                                            //
+                                                            //var dat= statusText + ", " + error + "," + processj;
+                                                            //
+                                                            //console.log( "Request Failed: " + dat);
+                                                            //
+                                                            //$('#leftwell').append("Fail:" + dat);
+                                                            //
+                                                            //})
+                                                            //.complete(function(jqxhr){
+                                                            //$('#leftwell').append("complete error: "+ jqxhr.statusText + "error is" + jqxhr.error);
+                                                            //
+                                                            //
+                                                            //
+                                                            //});
+
+
+                                                            //$('#leftwell').append("TESTING");
+                                                            //$('#leftwell').append("now" );
+
+
+                                                            //$('#leftwell').append("before");
+
+
+                                                            // Attach an asynchronous callback to read the data at our posts reference
+
+
+
+                                                            // $("leftwell").append("nowDate=" + nowDate +","+"Lastpull=" + lastPull);
+
+                                                            //function checkPull(){
+                                                            //
+                                                            //lastPull.on("value", function(snapshot) {
+                                                            //  console.log(snapshot.val());
+                                                            // lastPull= snapshot.val();
+                                                            // $("#leftwell").append("Lastpull set=" + lastPull);
+                                                            // datePulled= true;
+                                                            // initialCall();
+                                                            //}, function (errorObject) {
+                                                            //  console.log("The read failed: " + errorObject.code);
+                                                            //  
+                                                            //  $("#leftwell").append("lastpull read error"+ errorObject.code);
+                                                            //  
+                                                            //  
+                                                            //});
+                                                            //
+                                                            //
+                                                            //
+                                                            // $("#leftwell").append("After nowDate=" + nowDate +","+"Lastpull=" + lastPull);
+                                                            // 
+                                                            // }
+
+                                                            // while(datePulled== false){
+                                                            // if(lastPulled == "https://nflboot.firebaseio.com/lastPull"){
+                                                            // continue;
+                                                            // }else{
+                                                            //
+                                                            // $("#leftwell").append(" into else of while");
+                                                            // initialCall();
+                                                            //  datePulled== true;
+                                                            // break;
+                                                            // }
+                                                            // 
+                                                            // }
+                                                            //      $('#leftwell').append("before perform call ");
+                                                            //
+                                                            //	checkPull();  
+                                                            //	  
+                                                            //perform_ajax("https://api.fantasydata.net/nfl/v2/JSON/Teams/2015REG?Subscription-Key=1e6812d7d7b24f14985380dfacc8b99b");
+                                                            // $('#leftwell').append("after perform call ");
+
+                                                            //pass response or null in viewData and the url
+
+                                                            //function perform_ajax(url)
+                                                            //{
+                                                            //  var ajax_path = url;
+                                                            //   $('#leftwell').append("got to  call ");
+                                                            //  if(url.indexOf("Teams") != -1){
+                                                            //    $('#leftwell').append("inside teams  perform call ");
+                                                            //  if(cache.on)
+                                                            //  {
+                                                            //    $('#leftwell').append("cache on");
+                                                            //  
+                                                            //    var cachedResponse = cache.get(ajax_path);
+                                                            //	
+                                                            //	  $('#leftwell').append("cacched res= " + cachedResponse);
+                                                            //    if(cachedResponse != false)
+                                                            //    {  $('#leftwell').append("false test");
+                                                            //      // update website
+                                                            //   //   update_website(cachedResponse); // We just avoided one ajax request
+                                                            //	
+                                                            //     $('#leftwell').append("savedvar is "+savedVar);
+                                                            //   
+                                                            //  teamstr = cachedResponse;
+                                                            //	    $('#leftwell').append("rigt before check pull cached res is "+ teamstr);
+                                                            //	checkPull();
+                                                            //	 // savedVar= cachedResponse;
+                                                            //	    $('#leftwell').append("savedvar after "+savedVar);
+                                                            //      return true;
+                                                            //	  
+                                                            //    }
+                                                            //	else{
+                                                            //	
+                                                            //	  $('#leftwell').append("first else check call ");
+                                                            //	checkPull();
+                                                            //	}
+                                                            //  }
+                                                            //  
+                                                            //  }else{
+                                                            //  
+                                                            //    $('#leftwell').append("inside and else ");
+                                                            //  if(cache.on)
+                                                            //  {
+                                                            //    var cachedResponse = cache.get(ajax_path);
+                                                            //    if(cachedResponse != false)
+                                                            //    {
+                                                            //      // update website
+                                                            //   //   update_website(cachedResponse); // We just avoided one ajax request
+                                                            //	
+                                                            //     $('#leftwell').append("savedvar is "+savedVar);
+                                                            //   
+                                                            //  playerstr = cachedResponse;
+                                                            //	  
+                                                            //	
+                                                            //	 // savedVar= cachedResponse;
+                                                            //	    $('#leftwell').append("savedvar after "+savedVar);
+                                                            //      return true;
+                                                            //    }
+                                                            //	else{
+                                                            //	checkPull();
+                                                            //	}
+                                                            //  }
+                                                            //  }
+                                                            //  
+                                                            //  
+                                                            //  
+                                                            //
+                                                            //}
+                                                            //
+                                                            //
+                                                            // function initialCall(){
+                                                            // 
+                                                            // $("#leftwell").append(" inside initial call");
+                                                            //  
+                                                            // 
+                                                            //if(lastPull < nowDate){
+                                                            //
+                                                            //start(teamstr);
+                                                            //
+                                                            //
+                                                            // $("#leftwell").append(" Pulling new data.. nowDate=" + nowDate +","+"Lastpull=" + lastPull);
+                                                            //
+                                                            //
+                                                            //}else{
+                                                            //teamstr =	ref.child("teams");
+                                                            //
+                                                            //teamstr.on("value", function(snapshot) {
+                                                            //  console.log(snapshot.val());
+                                                            // teamstr= snapshot.val();
+                                                            // //$("#leftwell").append("teamstr set=" + teamstr[0].players[0]);
+                                                            //
+                                                            //doPlayers();
+                                                            //}, function (errorObject) {
+                                                            //  console.log("The read failed: " + errorObject.code);
+                                                            //  
+                                                            //  $("#leftwell").append("teamstr read error"+ errorObject.code);
+                                                            //  
+                                                            //  
+                                                            //});
+                                                            //
+                                                            //
+                                                            //
+                                                            //
+                                                            //
+                                                            ////playerstr.on("value", function(snapshot) {
+                                                            // // console.log(snapshot.val());
+                                                            // //playerstr= snapshot.val();
+                                                            // //$("#leftwell").append("playerstr set=" + playerstr);
+                                                            // 
+                                                            ////}, function (errorObject) {
+                                                            // // console.log("The read failed: " + errorObject.code);
+                                                            //  
+                                                            ////  $("#leftwell").append("playerstr read error"+ errorObject.code);
+                                                            //  
+                                                            //  
+                                                            ////});
+                                                            //
+                                                            //
+                                                            //
+                                                            //}
+                                                            //
+                                                            //}
+                                                            //
+                                                            //
+                                                            //function doPlayers(){
+                                                            // $("#leftwell").append("inside doplayers ");
+                                                            //
+                                                            //for(var x in teamstr){
+                                                            //	
+                                                            //for(p in teamstr[x].players){
+                                                            //
+                                                            // $("#leftwell").append("for loop= : "+ p);
+                                                            //for(y in teamstr[x].players[p]){
+                                                            //
+                                                            //// $("#leftwell").append("for loop three= : "+ 
+                                                            //
+                                                            //
+                                                            // $("#leftwell").append("for loop three= : "+ teamstr[x].players[p][y].LastName);
+                                                            // 
+                                                            //// $("#leftwell").append("for loop three= : "+ y.LastName);
+                                                            // 
+                                                            //playerstr[playerstr.length] = teamstr[x].players[p][y];
+                                                            //
+                                                            //
+                                                            //
+                                                            // $("#leftwell").append("finished players table= : "+ playerstr[playerstr.length].LastName);
+                                                            // //$("#leftwell").append("playerstr added player: "+ this.LastName);
+                                                            //
+                                                            //
+                                                            //}
+                                                            //	}
+                                                            //	
+                                                            //	}
+                                                            //	
+                                                            //	}
+
+                                                            //nflRest(nflRest.players(),nflRest.teams());
+                                                            //
+                                                            //function nflRest(teamstr,playerstr){
+                                                            //						 $('#leftwell').append("init func");
+                                                            //						 
+                                                            //							var anObj={};
+                                                            //
+                                                            //$('#leftwell').append("first" );
+                                                            //
+                                                            //							//teamstr = getTeamstr(teamstr);
+                                                            //
+                                                            //						this.teamstr= getTeamstr();
+                                                            //						
+                                                            //						
+                                                            //						
+                                                            //							//var playerstr =$.getJSON("");
+                                                            //
+                                                            //
+                                                            //							//this.teams = teams.init(teamstr);
+                                                            //							//this.players = players.init(playerstr);
+                                                            //
+                                                            //
+                                                            //
+                                                            //
+                                                            //
+                                                            //
+                                                            //							this.teams =  getTeams();
+                                                            //							
+                                                            //							function getTeams() {
+                                                            //								var pteam =JSON.parse(this.teamstr);
+                                                            //								for(var team in pteam){
+                                                            //									$('leftwell').append(team);
+                                                            //
+                                                            //									this.teams.push(pteam);
+                                                            //
+                                                            //								}
+                                                            //								//teams.init end
+                                                            //							};
+                                                            //
+                                                            //
+                                                            //							this.players = getPlayers();
+                                                            //							
+                                                            //							
+                                                            //							
+                                                            //							function getPlayers() {
+                                                            //								var pplayer =JSON.parse(playerstr);
+                                                            //								for(var player in pplayer){
+                                                            //
+                                                            //
+                                                            //									this.players.push(player);
+                                                            //
+                                                            //								}
+                                                            //								//players.init end
+                                                            //							};
+                                                            //put arg in func when ready nextteam
+                                                            //
+                                                            //						 function getTeam2(nextteam) {
+                                                            //
+                                                            //								for(var team in teams){
+                                                            //
+                                                            //
+                                                            //
+                                                            //
+                                                            //
+                                                            //									if (team.StadiumId.Name === this.nextteam)
+                                                            //									{
+                                                            //
+                                                            //
+                                                            //
+                                                            //										return this.getTeam = team;
+                                                            //									}
+                                                            //
+                                                            //
+                                                            //								}
+                                                            //
+                                                            //
+                                                            //								return this;  
+                                                            ////end getTeams
+                                                            //							};
+                                                            //
+                                                            //
+                                                            //
+                                                            //return nflRest;
+                                                            //
+                                                            //							// end nflRest.init		
+                                                            //						};
+                                                            //
+                                                            //
+                                                            //						//document.ready end
+                                                            //
+
+
+//                                                 
+                                                            $("#form1").hide();
+
+                                                        });
+
+                                                        //only to handle UI elements
+                                                        $("#addBtn").on("click", function () {
+                                                            showHideForm();
+                                                        });
+//
+
+//called if landlord added to table
+                                                        function handleMessage() {
+                                                            if (currentState.needsAddedMessage === true) {
+
+                                                                console.log("Ready State: " + document.readyState);
+
+
+                                                                $("#lltblMessage").addClass("panel panel-success alert-success");
+                                                                $("#lltblMessage").before("<span id='closeMess' align='right' class='panel panel-heading btn btn-default glyphicon glyphicon-eye-close glyphicon-align-right'>");
+                                                                $("#closeMess").css("display", "list-item");
+                                                                $("#lltblMessage").append("Lanlord Added:</br> " + JSON.stringify(llproto));
+                                                                $("#lltblMessage").after("</span>");
+                                                                //     submittedRowIndex = rowindex;
+                                                                
+                                                                     $("#closeMess").on("click", function () {
+                                                                    $("#lltblMessage").hide();
+                                                                    $("#closeMess").hide();
+                                                                        currentState.needsAddedMessage=false;
+                                                                    messages.set(currentState);
+                                                                });
+
+                                                            } 
+
+                                                            if (currentState.needsDeletedMessage === true) {
+                                                                $("#lltblMessage").addClass("panel panel-success alert-success");
+                                                                $("#lltblMessage").before("<span id='closeMess' align='right' class='panel panel-heading btn btn-default glyphicon glyphicon-eye-close glyphicon-align-right'>");
+                                                                $("#closeMess").css("display", "list-item");
+                                                                $("#lltblMessage").append("Lanlord Deleted:</br> " + JSON.stringify(llproto));
+                                                                $("#lltblMessage").after("</span>");
+                                                                console.log("Inside else, Ready State: " + document.readyState);
+                                                                //  console.log("Number of messages= " +numChildren);
+
+                                                                $("#closeMess").on("click", function () {
+                                                                    $("#lltblMessage").hide();
+                                                                    $("#closeMess").hide();
+                                                                        currentState.needsDeletedMessage=false
+                                                                    messages.set(currentState);
+                                                              
+
+                                                                });
+                                                                  }
+
+
+
+                                                            }
+
+//    needAddedMessage=false;
+                                                        
+
+                                                        function showHideForm() {
+                                                            console.log("This is a test!! form 1");
+                                                            $("#form1").toggle();
+                                                            $("#addBtn").toggle();
+                                                            if ($("#addBtn").attr("visibility", "hidden")) {
+                                                                $("#addBtn").html("");
+
+
+
+                                                            } else {
+                                                                $("#addBtn").html("Add landlord</br>");
+                                                                $("#lltblMessage").removeClass("panel-success");
+                                                                //  $("#lltblMessage").html("");
+
+                                                            }
+                                                        }
+
+                                                        $(document).on("ready", function () {
+                                                            countLoads++;
+                                                            if (countLoads > 1) {
+                                                                handleMessage();
+                                                            }
+
+                                                        });
+
+                                                        $(currentState).on("change", function () {
+                                                            stateKeeper(currentState);
+                                                        });
+                                                        function stateKeeper(currentState) {
+                                                            if (currentState.needsAddedMessage === true) {
+                                                                handleMessage();
+//     currentState.needsAddedMessage =false;
+//     messages.set(currentState);
+
+                                                            }
+                                                            if (currentState.needsDeletedMessage === true) {
+                                                                handleMessage();
+//     currentState.needsAddedMessage =false;
+//     messages.set(currentState);
+
+                                                            }
+                                                        }
+
+                                                        function deleteModal() {
+                                                            var personToDelete = landlords.child(matched);
+                                                            console.log("Index matched: " + matched);
+                                                            currentState.needsDeletedMessage = true;
+                                                            messages.set(currentState);
+                                                            personToDelete.remove();
+
+                                                            console.log("Message set" + JSON.stringify($(currentState)));
+                                                            location.reload();
+
+
+                                                            //  $("#lltblMessage").addClass("alert alert-success")
+                                                            //  $("#lltblMessage").append("Record Deleted: " + JSON.stringify(llproto));
+
+                                                        }
+
+
+                                                        function getModal(element) {
+                                                            var recordHtml = "  <tr> <td>First name</td>" +
+                                                                    " <td>  <input id = 'firstname' type='text' class='landlord' /></td>" +
+                                                                    "  </tr></br>" +
+                                                                    " <tr><td>Last Name</td> <td> <input id = 'lastname' type='text' class='landlord' /></td>" +
+                                                                    " </tr></br>  <tr>   <td>DOB</td>  <td> <input type='datetime-local' id = 'datebirth' type='text' class='landlord' /></td>" +
+                                                                    " </tr></br> <tr>  <td>Rating</td> <td> <input id = 'rating' type='range' class='landlord' min='1' max='10'/></td>" +
+                                                                    " </tr><tr> <td>Company</td><td><input id='company'  class='landlord' /></td>" +
+                                                                    "  </tr></br> <tr>   <td>Comments</td><td> <input id = 'comments' type='' class='landlord' /></td>" +
+                                                                    " </tr></br>";
+
+
+
+                                                            var modalHtml = "<div class='modal fade'>" +
+                                                                    "<div class='modal-dialog'>" +
+                                                                    " <div class='modal-content'>" +
+                                                                    "<div class='modal-header'>" +
+                                                                    " <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" +
+                                                                    " <h4 class='modal-title'>" + llproto.firstname + " " + llproto.lastname +
+                                                                    "</h4>" +
+                                                                    " </div>" +
+                                                                    "<div class='modal-body'>" +
+                                                                    recordHtml +
+                                                                    //     "  <p>One fine body&hellip;</p>"+
+                                                                    " </div>" +
+                                                                    " <div class='modal-footer'>" +
+                                                                    "  <button id='modalClose' type='button' class='btn btn-default' data-dismiss='modal'>Close</button>" +
+                                                                    " <button id='modalSave' type='button' class='btn btn-primary'>Save changes</button>" +
+                                                                    " <button id='modalDelete' type='button' class='btn btn-warning'>Delete</button>" +
+                                                                    " </div>" +
+                                                                    "   </div><!-- /.modal-content -->" +
+                                                                    " </div><!-- /.modal-dialog -->" +
+                                                                    "</div><!-- /.modal -->";
+
+
+                                                            $("#lltblMessage").append(modalHtml);
+                                                            $(".modal-body #firstname").val(llproto.firstname);
+                                                            $(".modal-body #lastname").val(llproto.lastname);
+                                                            $(".modal-body #datebirth").val(llproto.datebirth);
+                                                            $(".modal-body #rating").val(llproto.rating);
+                                                            $(".modal-body #company").val(llproto.company);
+                                                            $(".modal-body #comments").val(llproto.comments);
+                                                            ;
+                                                            var model = $(".modal").modal('show');
+
+                                                            $(model).on('hidden.bs.modal', function (e) {
+                                                                console.log("Everything should be hidden");
+                                                                //  var related = $(this).prop("relatedTarget");
+                                                                $(this).hide();
+                                                                $(model).css("visibility", "hidden");
+                                                                // $(related).prop("visibility, hidden");
+                                                                $(model).attr("class", ".modal .fade .out");
+                                                                console.log("relataed target" + $(model).attr("class"));
+
+                                                            });
+
+
+
+                                                            $("#modalSave").on("click", function () {
+                                                                updateModal();
+                                                                $(model).hide();
+                                                                console.log("Clicking SAVE!...class is " + $(".modal-open").prop("class"));
+                                                                $(".modal-dialog").hide();
+
+
+
+// TEST
+                                                                $(this).hide();
+                                                                $(model).css("visibility", "hidden");
+                                                                // $(related).prop("visibility, hidden");
+                                                                $(model).attr("class", ".modal .fade .out");
+                                                                $(".modal-backdrop.in").attr("class", ".modal .fade .out");
+                                                                console.log("relataed target" + $(model).attr("class"));
+
+                                                            });
+                                                            $("#modalDelete").on("click", function () {
+
+                                                                getOKBox();
+
+                                                            });
+
+
+                                                            $("#modalClose").on("click", function () {
+                                                                $(model).hide();
+                                                                console.log("Clicking save OK...class is " + $(".modal-open").prop("class"));
+                                                                $(".modal-dialog").hide();
+
+                                                            });
+
+                                                        }
+
+
+                                                        function getOKBox() {
+
+                                                            var recordHtml = "<form id='okForm' class='alert alert-danger'> <tr> <td>First name</td>" +
+                                                                    " <td>  <input id = 'firstname' type='text' readonly='true' class='landlord' /></td>" +
+                                                                    "  </tr></br>" +
+                                                                    " <tr><td>Last Name</td> <td> <input id = 'lastname' type='text' readonly='true' class='landlord' /></td>" +
+                                                                    " </tr></br>  <tr>   <td>DOB</td>  <td> <input type='datetime-local' id = 'datebirth' type='text' readonly='true' class='landlord' /></td>" +
+                                                                    " </tr></br> <tr>  <td>Rating</td> <td> <input id = 'rating' type='range' readonly='true' class='landlord' min='1' max='10'/></td>" +
+                                                                    " </tr><tr> <td>Company</td><td><input id='company' readonly='true'  class='landlord' /></td>" +
+                                                                    "  </tr></br> <tr>   <td>Comments</td><td> <input id = 'comments' type='' readonly='true' class='landlord' /></td>" +
+                                                                    " </tr></br></form>";
+
+
+                                                            var modalHtml = "<div class='modal fade'>" +
+                                                                    "<div class='modal-dialog alert alert-danger'>" +
+                                                                    " <div class='modal-content panel-warning'>" +
+                                                                    "<div class='modal-header'>" +
+                                                                    " <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" +
+                                                                    " <h4 class='modal-title'>This record will be deleted </br> Are you sure? --</br>" + llproto.firstname + " " + llproto.lastname +
+                                                                    "</h4>" +
+                                                                    " </div>" +
+                                                                    "<div class='modal-body'>" +
+                                                                    recordHtml +
+                                                                    //     "  <p>One fine body&hellip;</p>"+
+                                                                    " </div>" +
+                                                                    " <div class='modal-footer'>" +
+                                                                    "  <button id='modalClose' type='button' class='btn btn-default' data-dismiss='modal'>Cancel</button>" +
+                                                                    " <button id='okDelete' type='button' class='btn btn-warning'>Delete</button>" +
+                                                                    " </div>" +
+                                                                    "   </div><!-- /.modal-content -->" +
+                                                                    " </div><!-- /.modal-dialog -->" +
+                                                                    "</div><!-- /.modal -->";
+
+
+                                                            $("#lltblMessage").append(modalHtml);
+                                                            $("#okForm #firstname").val(llproto.firstname);
+                                                            $("#okForm #lastname").val(llproto.lastname);
+                                                            $("#okForm #datebirth").val(llproto.datebirth);
+                                                            $("#okForm #rating").val(llproto.rating);
+                                                            $("#okForm #company").val(llproto.company);
+                                                            $("#okForm #comments").val(llproto.comments);
+                                                            ;
+                                                            var model = $(".modal").modal('show');
+
+
+
+                                                            $("#okDelete").on("click", function () {
+                                                                deleteModal();
+                                                                $(model).hide();
+                                                                $(".modal-dialog").hide();
+                                                                console.log("Clicking DELETE OK...class is " + $(".modal-open").prop("class"));
+//location.reload();
+                                                                $(".modal-backdrop.in").attr("class", ".modal .fade .out");
+
+                                                            });
+
+
+                                                            $("#modalClose").on("click", function () {
+                                                                $(model).hide();
+                                                                console.log("Clicking save OK...class is " + $(".modal-open").prop("class"));
+                                                                $(".modal-dialog").hide();
+
+                                                            });
+
+                                                        }
+
+
+//retrieved on click so it can be matched before any edits
+                                                        function findCell(valToMatch) {
+                                                            //could use table.rows[1...rowIndex]
+                                                            var rowArr = table[0].children[1].rows;
+                                                            for (var a in rowArr) {
+                                                                if (a.rowIndex === $(valToMatch)) {
+                                                                    var indexMatched = this.rowIndex;
+                                                                    // indexMatched = Array.indexOf(a);
+                                                                    console.log("matched values in row " + valToMatch.contentText + "index is " + indexMatched);
+                                                                    return indexMatched;
+                                                                } else {
+                                                                    console.log("This val " + valToMatch.contentText + "did not match key " + a.indexMatched);
+
+                                                                }
+
+                                                            }
+                                                        }
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+

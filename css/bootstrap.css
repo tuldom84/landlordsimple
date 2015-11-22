@@ -1600,7 +1600,7 @@ pre code {
     width: 75%;
   }
   .col-sm-8 {
-    width: 66.66666667%;
+    width: 650px;
   }
   .col-sm-7 {
     width: 58.33333333%;
@@ -2783,6 +2783,8 @@ fieldset[disabled] .btn {
 .open > .dropdown-toggle.btn-default {
   color: #333;
   background-color: #e6e6e6;
+  alignment-baseline: central;
+  align-self: center;
   border-color: #adadad;
 }
 .btn-default:active,
@@ -3118,6 +3120,7 @@ fieldset[disabled] .btn-link:focus {
   font-size: 18px;
   line-height: 1.33;
   border-radius: 6px;
+  margin-left: 10%;
 }
 .btn-sm,
 .btn-group-sm > .btn {
@@ -3825,7 +3828,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .tab-content > .active {
   display: block;
-  width: 100%;
 }
 .nav-tabs .dropdown-menu {
   margin-top: -1px;
@@ -5278,6 +5280,7 @@ div#modDetails {
   /* height: 300%; */
   overflow-wrap: break-word;
   /* overflow: hidden; */
+  text-align: center;
   object-fit: scale-down;
   /* resize: both; */
   /* align-content: space-around; */
@@ -6028,8 +6031,8 @@ button.close {
 .panel-body:after,
 .modal-footer:before,
 .modal-footer:after {
-  display: table;
-  content: " ";
+  /* display: table; */
+  /* content: " "; */
 }
 .clearfix:after,
 .dl-horizontal dd:after,

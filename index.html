@@ -68,7 +68,7 @@
         </div>
          
 
-        <div class="container">
+        <div class="container" >
 
             <!--start of main page body content-->
             <div class="row">
@@ -92,7 +92,7 @@
 
                 </div>
                 <!--Dynamic middle column-->
-                <div class="col-sm-8">
+                <div class="col-sm-8 >
                     
                     <div class="starter-template">
                         <div class="tab-content">
@@ -349,6 +349,7 @@ $( "*" ).on( "mouseenter", $("body"), function() {
     if($("#messageList > li").length >0){
        console.log("I have a span");
  $("#messageList").show("slow");
+ alertQueue(this);
   $("#messageList").removeClass("fade out","fade", "out").addClass("fade in");
   }
 
@@ -417,6 +418,8 @@ $("#myBtn").on("click",function(){
     });
 //    
 
+
+
 saveSession();
 function saveSession(){
   if(authData.auth!==null){
@@ -427,7 +430,15 @@ function saveSession(){
 }
 
 
+
+//end document.ready
+//function() {
+ 
+//}
+
 });  
+
+
                                         var alertMessage;
                                         var alertMsg= $("#messageList").clone();
                                      var clickcount = 0;
@@ -1837,9 +1848,12 @@ $("#signupModal").css("visibility","visible");
      //  var btnIdArr=btnId.split(" ");
       // btnId=""
    var str= btnId.replace(" ","");
+      var numMsgs = $("#messageList")[0].childElementCount;
+
     btnId="#" + str;
+    
        console.log("btnId converted to: " + str);
-       var baseHtml = "  <li class='alert-danger'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>"+
+       var baseHtml = "  <li id=li"+str + numMsgs + " class='alert-danger'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>"+
      " <h4>"+title+"</h4>"+
      " <p>"+description+"</p>"+
        " <button id='"+ str +"' type='button' class='btn btn-danger'>"+buttonText+"</button>"+
@@ -1853,23 +1867,63 @@ $("#signupModal").css("visibility","visible");
        $(document).redirect(url);
     });
     
+  
+   $( "#li"+str + numMsgs).animate({
+    visibility: [ "hidden", "swing" ],
+    opacity: "0"}
+  , 5000, "linear", function() {
+    $(  this ).hide();
+  }
+);
    
-    
-    return  $("#messageList");
+   
+   
+   
+       return  $("#messageList");
        
-   }
+}
+   
+   
+//      $( "#li"+str + numMsgs").animate({
+//    visibility: [ "hidden", "swing" ],
+//    height: [ "0px", "swing" ],
+//    opacity: "toggle"}
+//  , 5000, "linear", function() {
+//    $(  "#"+str ).after( "<div>Animation complete.</div>" );
+//});
+//   function alertQueue(elem){
+//      console.log("animating now!" + $(this));
+//    $(elem).children("*", function(){
+//        console.log("animating now!" + $(this));
+//        $( elem ).animate({
+//    width: [ "toggle", "swing" ],
+//    height: [ "toggle", "swing" ],
+//    opacity: "toggle"
+//  }, 5000, "linear", function() {
+//    $( elem ).after( "<div>Animation complete.</div>" );
+//  });
+//      
+//    
+//});
+//}
+//
 
         </script>
     </body>
     <footer id='footer' class="navbar-fixed-bottom ">
         
-        <ul id="messageList" class="alert alert-danger alert-dismissible fade in" role="alert" >
+        <ul id="messageList" class="alert alert-danger alert-dismissible fade.in" hidden='true' role="alert" >
+                      
+                    </ul>  
+        
+        
+<!--          <ul id="messageList" class="alert alert-danger alert-dismissible fade in" role="alert" >
                         <li class="alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
       <h4>Oh snap! You got an error!</h4>
       <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
         <button type="button" class="btn btn-danger">Take this action</button>
       </p></li>
-                    </ul>  
+          </ul>-->
     </footer>
 </html>
 

@@ -19,3 +19,16 @@ body {
     /* line-height: 0; */
     outline-style: inset;
 }
+#landlordstbl > tbody > tr:hover {
+    color: red;
+    border-style: ridge;
+    border-radius: 15%;
+    border-width: thin;
+    width: 594%;
+    /* margin-left: 12px; */
+    background-color: black;
+    /* outline: black; */
+    display: inline-table;
+    height: 70;
+    text-shadow: cadetblue;
+}

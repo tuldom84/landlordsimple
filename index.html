@@ -46,7 +46,7 @@
 
 
                 </div><!--/.nav-collapse -->
-                <div class="navbar navbar-right navbar">
+<!--                <div class="navbar navbar-right navbar">
                     <form class="form-horizontal" role="form" >
                         <div class="form-group">
                             <input id="searchbox" type="search" class="form-control-static has-success has-feedback">
@@ -55,10 +55,19 @@
                             <btn class="form-control-static btn btn-default glyphicon glyphicon-search" />
                         </div>
                     </form>
-
-                </div>
-
-
+                        <button id="alertsBtn" class="btn btn-primary" type="button">
+  Messages <span id="alertsSpan" class="badge"></span>
+</button>
+                </div>-->
+<form class="navbar-form navbar-right" role="search">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+               <button id="alertsBtn" class="btn btn-primary navbar-fixed-top navbar-collapse" type="button" >
+  Messages <span id="alertsSpan" class="badge"></span>
+</button>
             </div>
 
 
@@ -146,7 +155,7 @@
 
 
 
-                                                                        <p>Forgot <a href="#">Password?</a></p>
+                                                                        <p>Forgot <a id="getPasswordBtn" href="#" data-dismiss="modal">Password?</a></p>
                                                                     </div>
                                                                 </div>
 
@@ -197,7 +206,53 @@
                                                         </div>
                                                     </div> 
                                                 </div>
-                                            </div>               
+                                            </div>      
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                 <div id="passwordModal" >
+                                                <div class="container">
+
+                                                    <div class="modal fade" id="passworddiag" role="dialog">
+                                                        <div class="modal-dialog">
+
+
+                                                            <div class="modal-content">
+                                                                <div class="modal-header" style="padding:35px 50px;">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <h4><span class="glyphicon glyphicon-user"></span> Reset Paaword</h4>
+                                                                </div>
+                                                                <div class="modal-body" style="padding:40px 50px;">
+                                                                    <form role="form" >
+                                                                        <div class="form-group">
+                                                                            <label for="pwresetEmail"><span class="glyphicon glyphicon-user"></span> Username</label>
+                                                                            <input type="text" class="form-control" id="pwresetEmail" placeholder="Enter email">
+                                                                        </div>
+                                                                       
+                                                                        <button id="passwordBtn" type="button" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Reset!</button>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-danger btn-default pull-left top" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div> 
+                                                </div>
+                                            </div>  
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
 
                                             <form id="form1" >
                                                 <tr>  
@@ -324,8 +379,71 @@
 
                                                             <script class="#landlordstbl > thead">
                                                     $(document).on("ready", function () {
+        
+                                                        
+                                                        
+        document.oncontextmenu = function() {return false;};
 
-                                                            $("#messageList").children("span").on("click", function () {
+  $("#landlordstbl > tbody").on('mousedown',"tr",function(e){ 
+    if( e.button == 2 ) { 
+        
+        var ctxmenuhtml = "<div id='ctxMenu' class='dropdown open'>"+
+  "<button class='btn btn-default dropdown-toggle glyphicon glyphicon-expand' type='button' id='dropdownMenu1' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true'>"+
+    "More..."+
+    "<span class='caret'></span>"+
+  "</button>"+
+  "<ul class='dropdown-menu' aria-labelledby='dropdownMenu1'>"+
+    "<li><button id='expandedClick'>Expanded Profile</button></li>"+
+    "<li><a href='#'>Another action</a></li>"+
+    "<li><a href='#'>Something else here</a></li>"+
+    "<li role='separator' class='divider'></li>"+
+    "<li><a href='#'>Separated link</a></li>"+
+  "</ul>"+
+"</div>";
+if($(this).find("#ctxMenu").length=== 0){
+$(this).prepend(ctxmenuhtml);
+//$("#ctxMenu").find('li').removeClass('close').addClass("open");
+//$('.dropdown-toggle').dropdown()
+$(rowData.siblings("*")).find("#ctxMenu").remove(); 
+}
+$("#landlordstbl #ctxMenu").on('click',"#expandedClick", function(){
+    alert("expanded click");
+    getExpandedProfile();
+});
+
+//  $("#landlordstbl > tbody").on('blur',"#ctxMenu",function(){
+//   //alert('Dropdown blurred!'); 
+//   
+//   $("#ctxMenu").hide(); 
+//});
+     
+     
+      return false; 
+    } 
+    return true; 
+  }); 
+
+//                                                         function getExpandedProfile(){
+//                                                    getExpandedProfile();
+//                                                                          }
+//                                                                          
+                                                                          
+                                                                          
+                                                                          
+      
+                                                              $("#alertsBtn").on("click",function(){
+                                                                  
+                                                                       console.log("alerts button clicked!");
+                                                           $("#messageList").toggle("slow");
+                                                           
+                                                           if($("#messageList").css("visibility")==="visible"){
+                                                               minimizeAlertsClicked = true;
+                                                           }else{
+                                                               minimizeAlertsClicked = false;
+                                                           }
+                                                        });
+
+                                                            $("#messageList").children(".delspan").on("click", function () {
                                                     $.when(!$("#messageList").has("li")).then(function () {
                                                             $("#messageList").hide("slow");
                                                             $("#messageList").removeClass("fade in", "fade", "in").addClass("fade out");
@@ -337,7 +455,7 @@
                                                                 $("#messageList").removeClass("fade out", "fade", "out").addClass("fade in");
                                                             });
                                                         });
-                                                            $("#footer #messageList").on("click", "span", function () {
+                                                            $("#footer #messageList").on("click", ".delspan", function () {
                                                             console.log("it works!");
                                                                                                                         //  var alertmodel = $("#messageList span");
   //  var alertmodel = $("#li"+str + numMsgs).modal('show');
@@ -351,7 +469,7 @@
 //                                                            $(alertmodel).attr("class", ".modal .fade .out");
 //                                                            console.log("relataed target" + $(alertmodel).attr("class"));
                                           
-                                                       saveSession();
+                                                        
                                                            $(user.alerts).each(function(){
                                                                var getIndex= $(this).index() === -1 ? 0 : $(this).index();
                                                            // var matchli = $(this).parentsUntil("#messageList").find("li");                                                    var matchtxt = matchli.textContent;
@@ -369,6 +487,7 @@
                                                       user.alerts.splice(user.alerts.indexOf(getIndex), 1);
                                                     users.child(user.uid).set(user);
                                                 }
+                                          //      saveSession();
                                                    
                                                 });
 //                                                      });
@@ -378,12 +497,33 @@
                                                            });
                                                             });
                                                             $("*").on("mouseenter", $("body"), function () {
+                                                               
+                                                          
+                                                        
                                                     console.log("message Added");
-                                                            if ($("#messageList > li").length > 0 && $("#messageList > li").length !== 'undefined' ) {
+                                                    $("#messageList > li").length===0 ? $("#alertsBtn").fadeOut("slow") : $("#alertsBtn").fadeIn("slow");
+                                                     $("#alertsSpan").text($("#messageList > li").length===0?"":$("#messageList > li").length);
+                                                            if ($("#messageList > li").length > 0 && $("#messageList > li").length !== 'undefined' && minimizeAlertsClicked === false) {
                                                             console.log("I have a span");
+                                                           
                                                      $("#messageList").show("slow");
                                                     //       alertQueue(this);
                                                     $("#messageList").removeClass("fade out", "fade", "out").addClass("fade in");
+                                                    
+                                                    
+                                                    if($("#messageList").css("visibility")==="visible" && loadcount ===0){
+                                                        loadcount++;
+                                                        $("#messageList").prepend("<button id='closeAlertsBtn' style=' background-color: lightskyblue;border-radius: 22%; border-color: darkcyan; border-style: outset; width: 2%; margin-left: 98%;margin-bottom: 1%;'>-</button>");
+                                                        $("#closeAlertsBtn").on("click",function(){
+                                                            $("#messageList").hide("slow");
+                                                            minimizeAlertsClicked = true;
+                                                        });
+                                                    }
+                                                            }
+                                                            
+                                                            if($("#messageList > li").css("visibility")==="hidden"){
+                                                               loadcount=0;
+                                                               minimizeAlertsClicked=false;
                                                             }
 
 
@@ -407,7 +547,7 @@
                                                     //});                                    
                                                             $("#form1").hide();
                                                             $("#addBtn").on("click", function () {
-                                                           // showHideForm();
+                                                            showHideForm();
                                                         });
                                                     var ref = rootRef;
                                                             countLoads++;
@@ -426,7 +566,7 @@
 
                                                             $("#logoutBtn").hide();
                                                             $("#myBtn").show();
-                                                                    $("#loginStateMsg"). text("Welcome, Please log in or sign up Guest! Logged  out")
+                                                         $("#loginStateMsg").text("Welcome, Please log in or sign up Guest! Logged  out");
 
                                                                             }
 
@@ -445,7 +585,7 @@
 
 
 
-                                                        saveSession();
+                                                       // saveSession();
 
                                                         function   saveSession() {
                                                             if (authData === null || 'undefined') {
@@ -550,6 +690,8 @@
 //}
 
                                                     });
+                                                    var loadcount=0;
+                                                    var minimizeAlertsClicked=false;
                                                     var alertMessage;
                                                     var alertMsg = $("#messageList").clone();
                                                     var clickcount = 0;
@@ -584,12 +726,14 @@
                                                             var lastRowPicked = messages.child("lastRow");
                                                             var rowindex = {}
                                                             var rowData = {};
+                                                            var protable={};
                                                             var rowval = {};
                                                     var matched;
                                                             var all;
                                                     var currLastIndex;
                                                             var user = {};                                                     var userData = {};
                                                             var allIndexes = [];
+                                                            var addressText="";
                                                             db.on("value", function (snapshot) {
                                                             console.log("On read db.on: " + snapshot.val());
                                                             dbJava = snapshot.val();
@@ -618,7 +762,7 @@
                                                             dynatable.sorts.add('lastname', 1); // 1=ASCENDING, -1=DESCENDING
                                                                     dynatable.process();
 //
-//
+                                                           
 
                                                                     });
                                                     lastRowPicked.on("value", function (snapshot) {
@@ -651,24 +795,31 @@
                                                             }, function (errorObject) {
                                                             console.log("The read failed: " + errorObject.code);
                                                     });
+                                                    
+                                                    
                                                             $(landlords).on("value", function () {
 
                                                             console.log("Form 1 has changed");
                                                         rowindex = (landlordsJava.length) + 1;
-                                                            // var llproto= new llproto();                                                             llproto.firstname = $("#firstname").text();
+                                                            // var llproto= new llproto();      
+                                                             llproto.firstname = $("#firstname").text();                                                       llproto.firstname = $("#firstname").text();
                                                             llproto.lastname = $("#lastname").text();
                                                             llproto.datebirth = $("#datebirth").text();
                                                             llproto.rating = $("#rating").text();
                                                             llproto.company = $("#company").text();
                                                             var commentTxt = $("#comments").text();
                                                             llproto.comments = commentTxt.split(",");
+                                                            
+//                                                             addressText = llproto.profile.city +","+ llproto.profile.state;
+                                                          
+                                                            
                                                         landlordsJava = snapshot.val();
                                                             console.log("on read landlords.on: " + landlordsJava);
                                                     dynaTbl = $('#landlordstbl').dynatable({
                                                     dataset: {records: landlordsJava
 
                                                             }
-                                                    }).data('dynaTbl');
+                                                    }).data('dynaTbl')
                                                     }, function (errorObject) {
                                                             console.log("The read failed: " + errorObject.code);
                                                     });
@@ -679,7 +830,9 @@
                                                             dataset: {records: landlordsJava
 
                                                             }
-                                                            }).data('dynaTbl');                                                         mydata = eval(landlordsJava);                                                     }, function (errorObject) {
+                                                            }).data('dynaTbl');                                                       
+                                                            mydata = eval(landlordsJava);                                   
+                                                        }, function (errorObject) {
                                                             console.log("The read failed: " + errorObject.code);
                                                             });
                                                             var ref = rootRef;
@@ -756,19 +909,38 @@
                                                             rowData = $(this);
                                                             rowData.css("background-color", "yellow");
                                                             $(rowData.siblings("*")).css("background-color", "steelblue");
+                                                            $(rowData.siblings("*")).find("#ctxMenu").remove(); 
                                                             rowData.prop("contentEditable", "true");
-                                                            llproto.firstname = rowval.children[0].textContent;
-                                                            llproto.lastname = rowval.children[1].textContent;
-                                                            llproto.datebirth = rowval.children[2].textContent;
-                                                            llproto.rating = rowval.children[4].textContent;
-                                                            llproto.company = rowval.children[3].textContent;
-                                                            var commentTxt = rowval.children[5].textContent;
+                                                            var rowcol=0;
+     if(rowval.children[0].textContent !== "More...Expanded ProfileAnother actionSomething else hereSeparated link"){
+                                                            rowcol=0;
+                                                        }else{
+                                                           rowcol=1;
+                                                        }
+                                      
+                                                            llproto.firstname = rowval.children[rowcol+0].textContent;
+                                                             llproto.lastname = rowval.children[rowcol+1].textContent;
+                                                            llproto.datebirth = rowval.children[rowcol+2].textContent;
+                                                            llproto.rating = rowval.children[rowcol+4].textContent;
+                                                            llproto.company = rowval.children[rowcol+3].textContent;
+                                                            var commentTxt = rowval.children[rowcol+5].textContent;
                                                             llproto.comments = commentTxt.split(",");
+                                                          matched= llMatch();
+                                                          
+//                                                         addressText = llproto.profile.city +","+ llproto.profile.state;
+
                                                             //                                                            //var matched= 
-                                                         llMatch();
-                                                            lastRowPicked.set(llproto);
-                                                            currentState.needsDeletedMessage = false;
-                                                            messages.set(currentState);
+                                                      
+                                                        // var saveProf= llproto.profile;
+                                                        // $(llproto).removeProp("profile");
+                                                    //    if(llproto.profile !== undefined ||llproto.profile !== 'undefined' || llproto.profile !== null){
+                                                           // console.log("llproto.profile is not undefined!");
+                                                        // lastRowPicked.child("profile").set(llproto.profile);
+//                                                     }lastRowPicked.
+//                                                            lastRowPicked.set(llproto);
+//                                                            currentState.needsDeletedMessage = false;
+//                                                            messages.set(currentState);
+                                                         //   llproto.profile=saveProf;
                                                             // $(".modal *").toggle();
 //
 //
@@ -862,14 +1034,21 @@
                                                             rowval = $(this)[0];
                                                             //   for (var x = 0; x < rowval.children.length; x++) {
 
-
-                                                            llproto.firstname = rowval.children[0].textContent;
-                                                            llproto.lastname = rowval.children[1].textContent;
-                                                            llproto.datebirth = rowval.children[2].textContent;
-                                                            llproto.rating = rowval.children[4].textContent;
-                                                            llproto.company = rowval.children[3].textContent;
-                                                            llproto.comments = rowval.children[5].textContent.split(",");
-                                                          llMatch();
+                                                                                                                       var rowcol=0;
+     if(rowval.children[0].textContent !== "More...Expanded ProfileAnother actionSomething else hereSeparated link"){
+                                                            rowcol=0;
+                                                        }else{
+                                                           rowcol=1;
+                                                        }
+                                                        
+                                                       
+                                                            llproto.firstname = rowval.children[rowcol+0].textContent;
+                                                             llproto.lastname = rowval.children[rowcol+1].textContent;
+                                                            llproto.datebirth = rowval.children[rowcol+2].textContent;
+                                                            llproto.rating = rowval.children[rowcol+4].textContent;
+                                                            llproto.company = rowval.children[rowcol+3].textContent;
+                                                            var commentTxt = rowval.children[rowcol+5].textContent;
+                                                          matched= llMatch();
                                                           //  lastRowPicked.set(llproto);
                                                             // landlords.child(matched).set(llproto);
 
@@ -880,9 +1059,9 @@
                                                             //  $(landlords).dom.update();
                                                             //                                                            var changes = $(this);
                                                             //                                                                console.log("A CHANGE HAS OCCURED " + "Row : " + changes.text());
-                                                            currentState.needsAddedMessage = false;
-                                                            currentState.needsDeletedMessage = false;
-                                                            messages.set(currentState);
+//                                                            currentState.needsAddedMessage = false;
+//                                                            currentState.needsDeletedMessage = false;
+//                                                            messages.set(currentState);
                                                             //  messages.set(currentState);
 
                                                             //                               location.reload();
@@ -961,8 +1140,9 @@
                                                         all = new Firebase('https://slumlordrateboard.firebaseio.com/slumlordrateboard/landlords');
                                                         all.orderByKey().on("value", function (snapshot) {
                                                             landlordsJava = snapshot.val();
-                                                            
+                                                            //   var saveProf= llproto.profile;
                                                             for (var a in landlordsJava) {
+                                                             
                                                                  if (a !== "messages") {
                                                                 console.log("INDEX IN ALL INDEXES: " + a);
 ////                                                                if(landlordsJava[a]>highestIndex){
@@ -977,13 +1157,19 @@
 
                                                                 console.log("The key " + data.key() + " and value of landlord is " + JSON.stringify(data.val()));
                                                                 // if(myLandlords.child(x).equalTo(llproto)){
-                                                                if (JSON.stringify($(data.val())) === JSON.stringify($(llproto)) ) {
+                                                                var clonedProto= llproto;
+                                                                $(clonedProto).removeProp("profile");
+                                                                var currInst= $(data.val());
+                                                                 $(currInst).removeProp("profile");
+                                                                if (JSON.stringify($(currInst[0])) === JSON.stringify($(clonedProto)) || JSON.stringify($(data.val())) === JSON.stringify($(llproto)) ) {
+                                                                    llproto = data.val();
                                                                     matched = data.key();
                                                                     lastRowPicked.set(data.val());
+                                                                    // llproto.profile=saveProf;
                                                                     return matched;
                                                                 }
 
-
+                                                                   
                                                             }
 
 
@@ -1008,6 +1194,139 @@
 ////    }
                                                         return matched;
                                                     }
+
+
+
+
+
+
+
+                                                    function pullLocations() {
+                                                            var states=[];
+                                                            var state={};
+                                                            var city={};
+                                                            
+                                                            
+                                                           // states[state.name].set(state);
+                                                            
+                                                        var myLandlords = {};
+                                                        //var ref = new Firebase(landlords);
+//landlords.child().equalTo(llproto)
+                                                        //  console.log("Got to beginning of llMatch function");
+
+
+                                                        all = new Firebase('https://slumlordrateboard.firebaseio.com/slumlordrateboard/landlords');
+                                                        all.orderByKey().on("value", function (snapshot) {
+                                                            landlordsJava = snapshot.val();
+                                                             });
+                                                            //   var saveProf= llproto.profile;
+                                                            for (var w in landlordsJava) {
+                                                              state.name="";
+                                                            state.cities=[];
+                                                           
+                                                            city.name="";
+                                                            city.landlords=[];
+                                                            state.city= city;
+                                                                   if(landlordsJava[w].profile !== undefined && landlordsJava[w].profile.address.state !== ""){
+//                                                                for(var a in landlordsJava[w]){
+                                                           //  if(a==="profile" ){
+                                                            //        console.log("Profile"+ JSON.stringify(a));
+                                                           //  for(var s in landlordsJava[w].profile.address){
+                                                                //  if(s==="city"){
+                                                                state.name= landlordsJava[w].profile.address.state;
+                                                                city.name= landlordsJava[w].profile.address.city;
+                                                                         state.cities[city.name]= city;
+                                                                         
+                                                                       console.log("city name set"+ landlordsJava[w].profile.address.city);
+                                                                      
+                                                                          
+                                                                       
+                                                                          //state.cities[state.city.name]=states[state.name].cities[state.city.name];
+                                                                           states[state.name]=state;
+                                                              //    all.child("states/cities/"+city.name).set(city);
+                                                       //       }
+//                                                                 if(s==="state"){
+//                                                                 state.name= landlordsJava[w].profile.address.state;
+//                                                                                    // console.log("state name set"+ state.name);
+//                                                                              all.child("states").set(states);        
+//                                                                                      if(landlordsJava.states[state.name]=== undefined){
+//                                                                                        //   all.child("states").child(state.name).set(state);
+//
+//                                                                                      }
+
+                                                                    
+                                                                 
+                                                    //       }
+                                             ///            }
+                                                //     }
+                                                      all.child("states").set(states);   
+            }
+        }
+                                                             
+//                                                                 if (a !== "messages") {
+//                                                                console.log("INDEX IN ALL INDEXES: " + a);
+//////                                                                if(landlordsJava[a]>highestIndex){
+//                                                               
+//                                                                    highestIndex = Math.abs(a) + 1;
+//                                                                }
+//                                                                
+//                                                            }
+//                                                            currLastIndex = highestIndex;
+//                                                            console.log("last index is " + currLastIndex);
+//                                                            snapshot.forEach(function (data) {
+//
+//                                                                console.log("The key " + data.key() + " and value of landlord is " + JSON.stringify(data.val()));
+//                                                                // if(myLandlords.child(x).equalTo(llproto)){
+//                                                                var clonedProto= llproto;
+//                                                                $(clonedProto).removeProp("profile");
+//                                                                var currInst= $(data.val());
+//                                                                 $(currInst).removeProp("profile");
+//                                                                if (JSON.stringify($(currInst[0])) === JSON.stringify($(clonedProto)) || JSON.stringify($(data.val())) === JSON.stringify($(llproto)) ) {
+//                                                                    llproto = data.val();
+//                                                                    matched = data.key();
+//                                                                    lastRowPicked.set(data.val());
+//                                                                    // llproto.profile=saveProf;
+//                                                                    return matched;
+//                                                                }
+
+                                                                   
+                                                            }
+                                                         
+
+                                          //                  );
+                                       //                 });
+////    for(var x in landlordsJava){
+////if(myLandlords.child(x).equalTo(llproto)){
+////          // if(JSON.stringify($(landlordsJava[x])) === JSON.stringify($(llproto))){
+////              
+////              
+////            var fbName= myLandlords.child(x).name();
+////            console.log("We have matched to: " + JSON.stringify($(landlordsJava[x])));
+////         console.log("IndexOf result " +  matched);
+////                 console.log("fbName result " +  fbName);
+////
+////         matched=fbName;
+////         
+////       break;
+////   }
+//                                                               currLastIndex = highestIndex;
+////    
+////    }
+                                       //                 return matched;
+                                                    
+                                                    
+
+
+
+
+
+
+
+
+
+
+
+
 
                                                     function checkFBobj(ref) {
 
@@ -1037,7 +1356,10 @@
 
                                                         console.log("Form 1 has changed");
 //                                                        // var nextIndex = $(landlordsJava).size();
-                                                        var nextIndex = currLastIndex;
+                                                        var nextIndex = 0;
+                                                         $(landlordsJava).removeProp('messages');
+                                                            $.each(landlordsJava,(function(i,el){i++; console.log(i); rowIndex=i; nextIndex=i+1}));
+                                                            
 //                                                            // var llproto= new llproto();
                                                         llproto.firstname = $("#firstname").val();
                                                         llproto.lastname = $("#lastname").val();
@@ -1048,19 +1370,25 @@
                                                         llproto.comments = commentTxt.split(",");
                                                         landlords.child(nextIndex).set(llproto);
                                                         //lastRowPicked.set(llproto);
-
-                                                        currentState.needsAddedMessage = true;
-                                                        messages.set(currentState);
+                                                            
+                                                            console.log("Trying to add new landlord " + JSON.stringify(llproto));
+                                               
                                                         lastRowPicked.set(llproto);
+                                                        getAlertMessage("Landlord Added", "Player Added Successfuly: " + JSON.stringify(llproto), "Add another?", function(){handleMessage();});
+
                                                         location.reload();
                                                         // handleMessage();
                                                         showHideForm();
                                                     }
 
-                                                    function updateModal() {
 
+
+                                                    function updateModal() {
+                                                            $(landlordsJava).removeProp('messages');
+                                                            $.each(landlordsJava,(function(i,el){i++; console.log(i); rowIndex=i;}));
+                                                            
                                                         console.log("Form 1 has changed");
-                                                        rowindex = (landlordsJava.length);
+                                                      //  rowindex = (landlordsJava.length);
                                                         console.log("Getting by row index.get func: " + $("#landlordstbl").get(rowindex));
                                                         llproto.firstname = $(".modal #firstname").val();
                                                         llproto.lastname = $(".modal #lastname").val();
@@ -1069,7 +1397,7 @@
                                                         llproto.company = $(".modal #company").val();
                                                         var commentTxt = $(".modal #comments").val();
                                                         llproto.comments = commentTxt.split(",");
-                                                      llMatch();
+                                                      matched = llMatch();
                                                         landlords.child(matched).set(llproto);
                                                         currentState.needsAddedMessage = false;
                                                         messages.set(currentState);
@@ -1407,6 +1735,8 @@ function checkAlerts(){
       //  user.uid=uid;
         
             if($(userData[user.uid]).prop("alerts") !== null || $(userData[user.uid]).prop("alerts") !== 'undefined'|| $(userData[user.uid]).prop("alerts") !== undefined){
+                $("#messageList").find("li").remove();
+                
              var htmlconvert="";
              
         $(userData[user.uid].alerts).each(function(){
@@ -1476,6 +1806,20 @@ password : $("#password").val()
   
 }, authHandler);
 }
+
+function pwReset(){
+ref.resetPassword({
+  email : $("#pwresetEmail").val()
+}, function(error) {
+  if (error === null) {
+    console.log("Password reset email sent successfully");
+  } else {
+    console.log("Error sending password reset email:", error);
+  }
+});
+
+}
+
 
                                                     function getLogin() {
                                                         var recordHtml = "  <div class='logmod'>"+
@@ -1718,12 +2062,12 @@ error = error;
  user.email = authData.password.email;
  console.log("Authenticated successfully with payload:", authData + " uid: " + authData.uid);
   
-                                                              if(users.uid===null){
-                                                             users.set(user.uid);
-                                                                                                                                                   
-
+                                                              if(userData[authData.uid].uid===null){
+                                                             
+                                                             users.child(authData.uid).set(authData);                                                                      
+                                                                user = userData[authData.uid];
                                                                    }else{
-                                                           users.child(user.uid).set(authData);
+                                                          user = userData[authData.uid];
                                                            
                                                                          }
                                                                                                                                                   
@@ -1777,7 +2121,246 @@ ref.authWithOAuthRedirect("<provider>", authHandler);
 
 
 
+                                                    function getExpanded(tableHtml) {
+                                                        if($("#promodDetails")!== null || $("#promodDetails")!== 'undefined'){
+                                                            $("#promodDetails").remove();
+                                                        }
+                                                        
+                                                    var recordHtml =tableHtml;
+                                                    
+                                                            var modalHtml = "<div id='promodDetails' class='modal fade in'>" +
+                                                            "<div class='modal-dialog'>" +
+                                                            " <div class='modal-content'>" +
+                                                            "<div class='modal-header'>" +
+                                                            " <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" +
+                                                            " <h4 class='modal-title'>" + llproto.profile.firstname + " " + llproto.profile.lastname +
+                                                            "'s Expanded Profile</h4>" +
+                                                            " </div>" +
+                                                            "<div class='modal-body'>" +
+                                                            recordHtml +
+                                                            //     "  <p>One fine body&hellip;</p>"+
+                                                    
+                                                      "<div id='editDiv' hidden='true'>"+
+                                                               //     "<form id=editForm">+
+                                                                    "First Name: <input id='firstname' type='text' value='"+llproto.profile.firstname +"' />" +
+                                                                    "Last Name: <input id='lastname' type='text' value='"+llproto.profile.lastname +"' />" +
+                                                                    "</br><h4>Address</h4></br>"+
+                                                                  "Street: <input type='text' id='street' value='"+llproto.profile.address.street +"' />" +
+                                                                 "City: <input type='text' id='city' value='"+llproto.profile.address.city +"' /></br>" +
+                                                                 "State: <input type='text' id='state' value='"+llproto.profile.address.state +"' />" +
+                                                                  "Zip: <input type='text' id='zip' value='"+llproto.profile.address.zip +"' /></br>" +
+                                                                  "Email: <input type='text' id='email' value='"+llproto.profile.email +"' />" +
+                                                                 "Phone1: <input type='text' id='phone1' value='"+llproto.profile.phone1 +"' /></br>" +
+                                                                 "Website: <input type='text' id='website' value='"+llproto.profile.website +"' />" +
 
+                                                                 //   "</form>"+
+                                                                    "</div>"+
+                                                                    
+                                                            " </div>" +
+                                                                  
+
+                                                            " <div class='modal-footer'>" +
+                                                            "  <button id='modalEdit' type='button' class='btn btn-default'>Edit Profile</button>" +
+
+                                                            " <button id='modalSave' type='button' class='btn btn-primary'>Save changes</button>" +
+                                                         "  <button id='modalClose' type='button' class='btn btn-default' data-dismiss='modal'>Close</button>" +
+
+                                                            " </div>" +
+                                                            "   </div><!-- /.modal-content -->" +
+                                                            " </div><!-- /.modal-dialog -->" +
+                                                            "</div><!-- /.modal -->";
+                                                            $("#lltblMessage").append(modalHtml);
+                                                            $("#lltblMessage").show();
+                                                            
+                                                            var promodel = $("#promodDetails").modal('show');
+                                                            $(promodel).on('hidden.bs.modal', function (e) {
+                                                    console.log("Everything should be hidden");
+                                                            //  var related = $(this).prop("relatedTarget");
+                                                            $(this).hide();
+                                                            $(promodel).css("visibility", "hidden");
+                                                            // $(related).prop("visibility, hidden");
+                                                            $(promodel).attr("class", ".modal .fade .out");
+                                                            console.log("relataed target" + $(promodel).attr("class"));
+                                                    });
+//                                                            $(promodel).on('shown.bs.modal', function (e) {
+//                                                                console.log("Everything should be shown");
+//                                                                //  var related = $(this).prop("relatedTarget");
+//                                                                $(this).show();
+//                                                                $(promodel).css("visibility", "visible");
+//                                                                // $(related).prop("visibility, hidden");
+//                                                                $(promodel).attr("class", ".fade .in");
+//                                                                console.log("relataed target" + $(promodel).attr("class"));
+//
+//                                                            });
+
+
+
+                                                            $("#modalSave").on("click", function () {
+                                                                
+                                                              llproto.firstname=  $("#editDiv").find("#firstname").val();
+                                                             llproto.lastname=  $("#editDiv").find("#lastname").val();
+                                                               llproto.profile.firstname=  $("#editDiv").find("#firstname").val();
+                                                             llproto.profile.lastname=  $("#editDiv").find("#lastname").val();                                                         
+                                                              llproto.profile.address.street=  $("#editDiv").find("#street").val();
+                                                              llproto.profile.address.city=  $("#editDiv").find("#city").val();
+                                                              llproto.profile.address.state=  $("#editDiv").find("#state").val();
+                                                              llproto.profile.address.zip=  $("#editDiv").find("#zip").val();
+                                                              llproto.profile.phone1=  $("#editDiv").find("#phone1").val();
+                                                              llproto.profile.email=  $("#editDiv").find("#email").val();
+                                                              llproto.profile.website=  $("#editDiv").find("#website").val();
+                                                                
+                                                             //  matched = llMatch();
+                                                        landlords.child(matched).set(llproto);
+                                                       
+                                                    
+                                                        lastRowPicked.set(llproto);
+//                                                            // handleMessage();
+                                                     //   showHideForm();
+                                                      console.log("Clicking SAVE!...class is " + $(".modal-open").prop("class"));
+                                                            $(".modal-dialog").hide();
+                                                        location.reload();
+//                                                            $(promodel).hide();
+//                                                           
+////// TEST
+//                                                            $(this).hide();
+//                                                            $(promodel).css("visibility", "hidden");
+//                                                            // $(related).prop("visibility, hidden");
+//                                                            $(promodel).attr("class", ".modal .fade .out");
+//                                                            $(".modal-backdrop.in").attr("class", ".modal .fade .out");
+//                                                            console.log("relataed target" + $(promodel).attr("class"));
+                                                    });
+                                                     $("#modalEdit").on("click", function () {
+                                                   // updateModal();
+                                                            $("#editDiv").show();
+                                                            console.log("Clicking EDIT!...class is " + $(".modal-open").prop("class"));
+                                                          //  $(".modal-dialog").hide();
+//// TEST
+                                                            $(this).hide();
+                                                           // $(promodel).css("visibility", "hidden");
+                                                            // $(related).prop("visibility, hidden");
+                                                          //  $(promodel).attr("class", ".modal .fade .out");
+                                                           // $(".modal-backdrop.in").attr("class", ".modal .fade .out");
+                                                            console.log("relataed target" + $(promodel).attr("class"));
+                                                    });
+                                                          
+                                                            $("#modalClose").on("click", function () {
+                                                    inModal = false;
+                                                            $(promodel).hide();
+                                                            console.log("Clicking save OK...class is " + $(".modal-open").prop("class"));
+                                                            $(".modal-dialog").hide();
+                                                    });
+                                                    }
+
+
+
+
+ function getExpandedProfile(){
+          alert("Expanded Profile!");
+          if(llproto.profile === undefined || llproto.profile === 'undefined' || llproto.profile === null){
+         // var currll= llproto;
+         profile={};
+         addr={};
+         addr.street="";
+         addr.city="";
+         addr.state="";
+         addr.zip="";
+         
+         
+          profile.firstname=llproto.firstname;
+          profile.lastname=llproto.lastname;
+         profile.address= addr;
+         profile.phone1="";
+         profile.email="";
+         profile.website="";
+         profile.ownedProps=[];
+         
+         llproto.profile=profile;
+        
+          }
+      if(matched===null || matched===undefined || matched=== 'undefined'){ matched= llMatch();}else{ matched=matched;}
+       console.log("matched is currently" + matched);
+        landlords.child(matched).set(llproto);
+         //landlordsJava[matched]=llproto;
+         
+     var singleRecArr= [];
+     singleRecArr[0]=landlordsJava[matched].profile;
+        addressText = landlordsJava[matched].profile.address.city +","+ landlordsJava[matched].profile.address.state;
+             singleRecArr[0].address= addressText;
+         var expandedText= "<table id='expandedtbl' title='Landlords Expanded Profile' class='table-responsive'>"+
+                                                      "  <thead>"+
+//                                                       " <th>profile.firstname</th>"+
+//                                                       " <th>profile.lastname</th>"+
+//                                                       " <th>profile.address</th>"+
+//                                                       " <th>profile.phone</th>"+
+//                                                       " <th>profile.email</th>"+
+//                                                        "<th>profile.website</th>"+
+//                                                         "<th>profile.ownedProps</th>"+
+                                                         " <th>firstname</th>"+
+                                                       " <th>lastname</th>"+
+                                                       " <th>address</th>"+
+                                                       " <th>phone1</th>"+
+                                                       " <th>email</th>"+
+                                                        "<th>website</th>"+
+                                                         "<th>ownedProps</th>"+
+                                                      "  </thead>"+
+                                                       " <tbody>"+
+                                                       " </tbody>"+
+                                                    "</table>"; 
+         
+         
+         getExpanded(expandedText);
+         
+         
+          protable = $('#expandedtbl').dynatable({
+                                                            dataset: {records: singleRecArr
+
+                                                            }
+                                                            }).data('protable');
+                                                        //stateKeeper.needsAddedMessage =true;
+                                                           
+                                                    //on table load sort table by last name
+                                                    $('#expandedtbl').bind('dynatable:init', function (e, dynatable) {
+                                                            // dynatable.clear();
+
+                                                        // dynatable.records.resetOriginal();
+                                                            //dynatable.records.updateFromJson();
+                                                            dynatable.sorts.clear();
+                                                            dynatable.sorts.add('lastname', 1); // 1=ASCENDING, -1=DESCENDING
+                                                                    dynatable.process();
+//
+//                                                          
+                                                                          $("#expandedtbl tbody").find("tr").each(function(){
+                                                                   var cellObj= this.cells[2];
+                                                                  var addyHTMLBefore = cellObj.textContent;
+                                                                  //this.cells[2].defineProperty(this, innerHTML, "<a>"+ addyHTMLBefore+"</a>");
+                                                                  $(cellObj).prepend("<a href='#' onclick='alert("+addyHTMLBefore+")'>");
+                                                                  $(cellObj).append("</a>");
+                                                                  alert("testing that this is being called" + addyHTMLBefore);
+                                                               });
+
+                                                                    });
+                                                                    
+                                                                    
+                                                                         $("#expandedtbl tbody").find("tr").each(function(){
+                                                                   var cellObj= this.cells[2];
+                                                                  var addyHTMLBefore = cellObj.textContent;
+                                                                  //this.cells[2].defineProperty(this, innerHTML, "<a>"+ addyHTMLBefore+"</a>");
+                                                                  $(cellObj).html("<a href='#' onclick='alert("+'"'+addyHTMLBefore+'"'+")'>"+addyHTMLBefore+"</a>");
+                                                                 // $(cellObj).append("</a>");
+                                                                  alert("testing that this is being called" + addyHTMLBefore);
+                                                               });
+                                                               
+                                                                       $('#expandedtbl tbody').on("click","tr",function(){
+                                                                          var currEx={};
+                                                                            currEx.firstname= this.cells[0].textContent;
+                                                                           currEx.lastname= this.cells[1].textContent;
+                                                                                  
+                                                                           alert(currEx.firstname + " " + currEx.lastname);
+                                                                       });
+                                                                    
+                                                                    }
+
+      
                                //                             alerts=users.child(authData.uid).set(alerts);
                                                            users.on("value",function(snapshot){
                                                                userData = snapshot.val();
@@ -1973,6 +2556,7 @@ $("#signup").css("visibility","visible");
     
 });
 
+
 $('#signupBtn').click(function(){
     console.log("signup button clicked!");
     $("#loginModal").modal('hide');
@@ -1995,6 +2579,64 @@ $("#signup").css("visibility","hidden");
 createNewUser(user);
     
 });
+
+$('#getPasswordBtn').click(function(){
+     $("#passworddiag").modal();
+    inModal=true;
+    console.log("pw reset button clicked!");
+    $("#loginModal").modal('hide');
+   // $("#SignupModal").modal('hide');
+  //  $("#signup").modal('hide');
+   // $("#loginModal").parents("*").hide();
+        
+// $("#myModal").css("visibility","hidden");
+
+$('.modal-backdrop').css("visibility","hidden");
+    
+//        $('#passwordModal').modal();
+//
+//         $('#passwordModal').css("visibility","visible");
+//
+//    
+
+//$("#password").addClass("in");
+$("#passwordModal").css("visibility","visible");
+//$("#passwordModal").modal();
+    //  $("#password").modal();
+    $("#passworddiag").modal();
+$("#passworddiag").css("visibility","visible");
+    
+});
+
+
+
+$('#expandedClick').click(function(){
+    alert("test");
+    getExpandedProfile();
+});
+
+$('#passwordBtn').click(function(){
+    console.log("password button clicked!");
+    $("#loginModal").modal('hide');
+        
+// $("#myModal").css("visibility","hidden");
+$('.modal-backdrop').css("visibility","hidden");
+    
+//        $('#passwordModal').modal();
+//
+//         $('#passwordModal').css("visibility","visible");
+//
+//    
+
+$("#passwordModal").css("visibility","hidden");
+    //  $("#password").modal();
+$("#passworddiag").css("visibility","hidden");
+    user.email = $("#passwordModal #pwResetEmail").val();
+
+    console.log("password reset, check you email address: "+ user.email);
+pwReset();
+    
+});
    
 function getAlertMessage(title, description, buttonText,url){
       $("#messageList").hide();
@@ -2014,20 +2656,21 @@ function getAlertMessage(title, description, buttonText,url){
 btnId="#" + str;
     
    console.log("btnId converted to: " + str);
-   var baseHtml = "  <li id=li"+str + numMsgs + " class='alert-danger'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>"+
+   var baseHtml = "  <li id=li"+str + numMsgs + " class='alert-danger'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span class='delspan' aria-hidden='true'>×</span></button>"+
  " <h4>"+title+"</h4>"+
  " <p>"+description+"</p>"+
    " <button id='"+ str +"' type='button' class='btn btn-danger'>"+buttonText+"</button>"+
  " </p></li>";
-    
+                    
  $("#messageList").append(baseHtml);
-                    $("#" + str).click(function(url) {
+           // var poundStr= "#" + str;
+            
+                      $("#" + str).click(function(url) {
                    // location.redirect("+url+");
                     console.log("click event attached for new alert: " + buttonText);
                    // $(document).redirect(url)
                     eval(url());
-                                                });
-                                                
+                                                });                              
                                                 
         if(authData!==null){
         // $(user).alerts.push($("#li"+str + numMsgs).data());
@@ -2172,6 +2815,255 @@ return str;
   $( "*" ).error(function(){
       getAlertMessage("Error Message", $(this).val(), "OK",$(this).parent("li").hide());
   });
+  
+  
+  function generateUserProfile(){
+      var address={};
+       address.street="";
+       address.state="";
+       address.city="";
+        address.zip="";
+      
+      
+      var profileLoaded= false;
+    if(userData[authData.uid].profile===undefined && authData!==undefined){
+        profileLoaded=false;
+             user.profile = {};
+user.profile.firstname = "";
+user.profile.lastname = "";
+user.profile.address=address;
+            
+          users.child(authData.uid).set(user);                                                                      
+         user = userData[authData.uid];
+            }else{
+//             user.profile.firstname = $("#profileModel #firstName").val();
+//             user.profile.lastname = $("#profileModel #firstName").val();
+//             user.profile.address=address;
+//             user.profile.address["street"]=$("#profileModel #addressStreet").val();
+//             user.profile.address["state"]=$("#profileModel #addressState").val();
+//             user.profile.address["city"]=$("#profileModel #addressCity").val();
+//             user.profile.address["zip"]=$("#profileModel #addressZip").val();
+        profileLoaded= true;
+      
+         user = userData[authData.uid];
+                                                           
+        }
+          
+   
+         
+      
+      if(profileLoaded){
+          var recordHtml="";
+          var id="";
+          var txt="";
+          for(var p in user.profile){
+              if($.type(p)==='string')
+{
+   //it's a string
+
+               id= p;
+               txt= $(user.profile.p).val();
+           txt=   txt===undefined?"":txt;
+              console.log("key is" + id + "value is" + txt);
+                recordHtml += "  <tr> <td>"+ capFirst(id) +"</td>" +
+                                                            " <td>  <input id = '"+id+"' type='text' class='profile' value='"+ capFirst(txt)+"'/></td>" +
+                                                            "  </tr></br>";
+              
+                             }else{
+                                 $(user.profile.address).each(function(){for(var x in eval(this)){
+                                
+                                        id=x;
+              txt= $(x).val();
+           txt=   txt===undefined?"":txt;
+              console.log("key is" + id + "value is" + txt);
+                recordHtml += "  <tr> <td>"+ capFirst(id) +"</td>" +
+                                                            " <td>  <input id = '"+id+"' type='text' class='profile' value='"+ capFirst(txt)+"'/></td>" +
+                                                            "  </tr></br>";
+                                     
+                                 }
+                             });
+                         }
+                     }
+                   var modalHtml = "<div id='profileDetails' class='modal fade in'>" +
+                                                            "<div class='modal-dialog'>" +
+                                                            " <div class='modal-content'>" +
+                                                            "<div class='modal-header'>" +
+                                                            " <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" +
+                                                            " <h4 class='modal-title'>" + authData.password.email + " Profile" +
+                                                            "</h4>" +
+                                                            " </div>" +
+                                                            "<div class='modal-body'>" +
+                                                            recordHtml +
+                                                            //     "  <p>One fine body&hellip;</p>"+
+                                                            " </div>" +
+                                                            " <div class='modal-footer'>" +
+                                                            "  <button id='profileClose' type='button' class='btn btn-default' data-dismiss='modal'>Close</button>" +
+                                                            " <button id='profileSave' type='button' class='btn btn-primary'>Save changes</button>" +
+                                                            " <button id='profileDelete' type='button' class='btn btn-warning'>Delete</button>" +
+                                                            " </div>" +
+                                                            "   </div><!-- /.modal-content -->" +
+                                                            " </div><!-- /.modal-dialog -->" +
+                                                            "</div><!-- /.modal -->";
+                                                            $("#lltblMessage").append(modalHtml);
+                                                            $("#lltblMessage").show();
+         
+           var model = $("#profileDetails").modal('show');
+                                                            $(model).on('hidden.bs.modal', function (e) {
+                                                    console.log("Everything should be hidden");
+                                                            //  var related = $(this).prop("relatedTarget");
+                                                            $(this).hide();
+                                                            $(model).css("visibility", "hidden");
+                                                            // $(related).prop("visibility, hidden");
+                                                            $(model).attr("class", ".modal .fade .out");
+                                                            console.log("relataed target" + $(model).attr("class"));
+                                                    });
+//                                                            $(model).on('shown.bs.modal', function (e) {
+//                                                                console.log("Everything should be shown");
+//                                                                //  var related = $(this).prop("relatedTarget");
+//                                                                $(this).show();
+//                                                                $(model).css("visibility", "visible");
+//                                                                // $(related).prop("visibility, hidden");
+//                                                                $(model).attr("class", ".fade .in");
+//                                                                console.log("relataed target" + $(model).attr("class"));
+//
+//                                                            });
+
+
+
+                                                            $("#modalSave").on("click", function () {
+                                                    updateModal();
+                                                            $(model).hide();
+                                                            console.log("Clicking SAVE!...class is " + $(".modal-open").prop("class"));
+                                                            $(".modal-dialog").hide();
+//// TEST
+                                                            $(this).hide();
+                                                            $(model).css("visibility", "hidden");
+                                                            // $(related).prop("visibility, hidden");
+                                                            $(model).attr("class", ".modal .fade .out");
+                                                            $(".modal-backdrop.in").attr("class", ".modal .fade .out");
+                                                            console.log("relataed target" + $(model).attr("class"));
+                                                    });
+                                                            $("#modalDelete").on("click", function () {
+
+                                                    getOKBox();
+                                                    });
+                                                            $("#modalClose").on("click", function () {
+                                                    inModal = false;
+                                                            $(model).hide();
+                                                            console.log("Clicking save OK...class is " + $(".modal-open").prop("class"));
+                                                            $(".modal-dialog").hide();
+                                                    });
+          
+      }else{
+          //profile not pull error handler
+          
+       
+          
+          
+      }
+      
+      
+  }
+  
+  
+  
+  function capFirst(word){
+      
+     $(word).css("text-transform","capitalize");
+     return word;
+  }
+                                                     
+    
+    
+    function getModal() {
+                                                        if($("#modDetails")!== null || 'undefined'){
+                                                            $("#modDetails").remove();
+                                                        }
+                                                        
+                                                    var recordHtml = "  <tr> <td>First name</td>" +
+                                                            " <td>  <input id = 'firstname' type='text' class='landlord' /></td>" +
+                                                            "  </tr></br>" +
+                                                            " <tr><td>Last Name</td> <td> <input id = 'lastname' type='text' class='landlord' /></td>" +
+                                                            " </tr></br>  <tr>   <td>DOB</td>  <td> <input type='datetime-local' id = 'datebirth' type='text' class='landlord' /></td>" +
+                                                            " </tr></br> <tr>  <td>Rating</td> <td> <input id = 'rating' type='range' class='landlord' min='1' max='10'/></td>" +
+                                                            " </tr><tr> <td>Company</td><td><input id='company'  class='landlord' /></td>" +
+                                                            "  </tr></br> <tr>   <td>Comments</td><td> <input id = 'comments' type='' class='landlord' /></td>" +
+                                                            " </tr></br>";
+                                                            var modalHtml = "<div id='modDetails' class='modal fade in'>" +
+                                                            "<div class='modal-dialog'>" +
+                                                            " <div class='modal-content'>" +
+                                                            "<div class='modal-header'>" +
+                                                            " <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" +
+                                                            " <h4 class='modal-title'>" + llproto.firstname + " " + llproto.lastname +
+                                                            "</h4>" +
+                                                            " </div>" +
+                                                            "<div class='modal-body'>" +
+                                                            recordHtml +
+                                                            //     "  <p>One fine body&hellip;</p>"+
+                                                            " </div>" +
+                                                            " <div class='modal-footer'>" +
+                                                            "  <button id='modalClose' type='button' class='btn btn-default' data-dismiss='modal'>Close</button>" +
+                                                            " <button id='modalSave' type='button' class='btn btn-primary'>Save changes</button>" +
+                                                            " <button id='modalDelete' type='button' class='btn btn-warning'>Delete</button>" +
+                                                            " </div>" +
+                                                            "   </div><!-- /.modal-content -->" +
+                                                            " </div><!-- /.modal-dialog -->" +
+                                                            "</div><!-- /.modal -->";
+                                                            $("#lltblMessage").append(modalHtml);
+                                                            $("#lltblMessage").show();
+                                                            $(".modal-body #firstname").val(llproto.firstname);
+                                                            $(".modal-body #lastname").val(llproto.lastname);
+                                                            $(".modal-body #datebirth").val(llproto.datebirth);
+                                                            $(".modal-body #rating").val(llproto.rating);
+                                                            $(".modal-body #company").val(llproto.company);
+                                                            $(".modal-body #comments").val(llproto.comments);
+                                                            var model = $("#modDetails").modal('show');
+                                                            $(model).on('hidden.bs.modal', function (e) {
+                                                    console.log("Everything should be hidden");
+                                                            //  var related = $(this).prop("relatedTarget");
+                                                            $(this).hide();
+                                                            $(model).css("visibility", "hidden");
+                                                            // $(related).prop("visibility, hidden");
+                                                            $(model).attr("class", ".modal .fade .out");
+                                                            console.log("relataed target" + $(model).attr("class"));
+                                                    });
+//                                                            $(model).on('shown.bs.modal', function (e) {
+//                                                                console.log("Everything should be shown");
+//                                                                //  var related = $(this).prop("relatedTarget");
+//                                                                $(this).show();
+//                                                                $(model).css("visibility", "visible");
+//                                                                // $(related).prop("visibility, hidden");
+//                                                                $(model).attr("class", ".fade .in");
+//                                                                console.log("relataed target" + $(model).attr("class"));
+//
+//                                                            });
+
+
+
+                                                            $("#modalSave").on("click", function () {
+                                                    updateModal();
+                                                            $(model).hide();
+                                                            console.log("Clicking SAVE!...class is " + $(".modal-open").prop("class"));
+                                                            $(".modal-dialog").hide();
+//// TEST
+                                                            $(this).hide();
+                                                            $(model).css("visibility", "hidden");
+                                                            // $(related).prop("visibility, hidden");
+                                                            $(model).attr("class", ".modal .fade .out");
+                                                            $(".modal-backdrop.in").attr("class", ".modal .fade .out");
+                                                            console.log("relataed target" + $(model).attr("class"));
+                                                    });
+                                                            $("#modalDelete").on("click", function () {
+
+                                                    getOKBox();
+                                                    });
+                                                            $("#modalClose").on("click", function () {
+                                                    inModal = false;
+                                                            $(model).hide();
+                                                            console.log("Clicking save OK...class is " + $(".modal-open").prop("class"));
+                                                            $(".modal-dialog").hide();
+                                                    });
+                                                    }
   
   
     </script>
